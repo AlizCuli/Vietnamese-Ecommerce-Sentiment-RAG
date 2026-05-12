@@ -1,0 +1,6 @@
+﻿text,true_label,predicted_label
+Mk mua hàng trên tiki đã lâu đây là lần đầu tiên tiki khiến mk k hài lòng,neutral,positive
+"Do tầm giá này cũng không đòi hỏi được gì nhiều nhưng sản phẩm này sẽ tốt hơn nếu thiết kế phần vặn ốc tiện hơn, đảm bảo các bạn là vặn hết số ốc đó vô thì tay nổi chuột luôn đó :D",negative,neutral
+"Tạm ổn, gỗ cắt hơi lệch, lắp xong giá sách bị cong mất 2 thanh ở trên cùng và dưới cùng, bản hướng dẫn và các tấm ván gỗ cần đánh số thứ tự, chiều lắp để thuận tiện lắp ráp và sử dụng",negative,neutral
+chưa ráp nhưng kiểm tra hàng rẩt ưng ý,positive,negative
+"Giá cả ko biết có rẻ ko, nhưng giao đủ đồ để lắp",positive,neutral

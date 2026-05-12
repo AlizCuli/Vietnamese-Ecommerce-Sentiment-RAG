@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vietnamese E-commerce Sentiment + RAG Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero compact-hero">
+        <div class="hero-copy">
+          <span class="badge">NLP + Sentiment Classification + RAG</span>
+          <h1>Ứng dụng NLP và RAG trong phân tích cảm xúc đánh giá sản phẩm TMĐT</h1>
+          <p>
+            Hệ thống phân loại cảm xúc review sản phẩm, sau đó dùng Retrieval-Augmented Generation
+            để truy xuất review liên quan và tạo câu trả lời có bằng chứng.
+          </p>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Điều hướng chính">
+        <button class="tab-btn active" type="button" data-tab="sentimentTab">Phân tích Sentiment</button>
+        <button class="tab-btn" type="button" data-tab="ragTab">Hỏi đáp RAG</button>
+        <button class="tab-btn" type="button" data-tab="techTab">Kỹ thuật & đánh giá</button>
+      </nav>
+
+      <section id="ragTab" class="tab-panel">
+        <section class="panel query-composer">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Đầu vào</p>
+              <h2>Đặt câu hỏi về review khách hàng</h2>
+            </div>
+            <span id="ragStatus" class="status idle">Sẵn sàng</span>
+          </div>
+
+          <form id="ragForm">
+            <label for="query">Câu hỏi RAG</label>
+            <textarea
+              id="query"
+              rows="4"
+              placeholder="Ví dụ: Khách hàng phàn nàn gì về giao hàng chậm?"
+            >Khách hàng phàn nàn gì về giao hàng chậm?</textarea>
+            <p id="queryHint" class="field-hint">
+              Nhập câu hỏi về review, không nhập review vào ô này.
+            </p>
+            <p id="staleWarning" class="warning-line hidden">
+              Câu hỏi đã thay đổi. Hãy bấm Chạy RAG để cập nhật kết quả.
+            </p>
+
+            <div class="quick-prompts" aria-label="Câu hỏi nhanh">
+              <button type="button" data-query="Khách hàng phàn nàn gì về giao hàng chậm?">Giao hàng chậm</button>
+              <button type="button" data-query="Review nào nói shop giao sai hàng?">Sai hàng</button>
+              <button type="button" data-query="Có review nào nói giao thiếu hàng hoặc thiếu phụ kiện không?">Thiếu hàng</button>
+              <button type="button" data-query="Review nào nói đóng gói móp méo hoặc bao bì kém?">Đóng gói lỗi</button>
+              <button type="button" data-query="Khách hàng chê chất lượng sản phẩm ở điểm nào?">Chất lượng kém</button>
+              <button type="button" data-query="Khách hàng nói gì về shop phản hồi chậm?">Shop phản hồi chậm</button>
+              <button type="button" data-query="Khách hàng nói gì về size không vừa?">Vấn đề size</button>
+              <button type="button" data-query="Có review nào nói hàng bị lỗi hoặc hỏng không?">Hàng lỗi/hỏng</button>
+            </div>
+
+            <details class="advanced-filter">
+              <summary>Bộ lọc nâng cao</summary>
+              <div class="controls">
+                <label>
+                  Top K
+                  <select id="topK">
+                    <option value="3">3</option>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                  </select>
+                </label>
+                <label>
+                  Cảm xúc
+                  <select id="sentiment">
+                    <option value="auto" selected>Tự động</option>
+                    <option value="negative">Tiêu cực</option>
+                    <option value="neutral">Trung lập</option>
+                    <option value="positive">Tích cực</option>
+                    <option value="all">Tất cả</option>
+                  </select>
+                </label>
+                <label>
+                  Ngành hàng
+                  <select id="category">
+                    <option value="">Tất cả</option>
+                  </select>
+                </label>
+                <label>
+                  Số sao
+                  <select id="ratingFilter">
+                    <option value="all" selected>Tất cả</option>
+                    <option value="low">1-2 sao</option>
+                    <option value="mid">3 sao</option>
+                    <option value="high">4-5 sao</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="toggles">
+                <label class="check">
+                  <input id="autoFilter" type="checkbox" checked />
+                  <span>Tự suy luận filter theo câu hỏi</span>
+                </label>
+                <label class="check">
+                  <input id="smartCategory" type="checkbox" checked />
+                  <span>Lọc category thông minh</span>
+                </label>
+                <label class="check">
+                  <input id="excludeApp" type="checkbox" />
+                  <span>Loại category App</span>
+                </label>
+                <label class="check">
+                  <input id="evidenceOnly" type="checkbox" checked />
+                  <span>Chỉ dùng evidence, không bịa</span>
+                </label>
+              </div>
+            </details>
+
+            <button id="submitBtn" class="primary-btn" type="submit">
+              <span id="buttonText">Chạy RAG</span>
+              <span id="buttonSpinner" class="spinner hidden"></span>
+            </button>
+          </form>
+        </section>
+
+        <section id="understandingPanel" class="panel understanding-panel hidden">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Diễn giải truy vấn</p>
+              <h2>Hệ thống hiểu câu hỏi</h2>
+            </div>
+          </div>
+          <div id="understandingGrid" class="understanding-grid"></div>
+        </section>
+
+        <section class="result-layout">
+          <section class="panel answer-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Kết quả</p>
+                <h2>Câu trả lời có bằng chứng</h2>
+              </div>
+            </div>
+
+            <div id="emptyState" class="state-card">
+              <strong>Chưa có kết quả</strong>
+              <p>Nhập câu hỏi và bấm Chạy RAG để xem tóm tắt, vấn đề chính và bằng chứng.</p>
+            </div>
+
+            <div id="loadingState" class="state-card hidden">
+              <div class="loader"></div>
+              <strong>Đang truy xuất review...</strong>
+              <p>Backend đang tìm evidence bằng FAISS và tạo câu trả lời có citation.</p>
+            </div>
+
+            <div id="errorState" class="state-card error hidden">
+              <strong>Không chạy được RAG</strong>
+              <p id="errorMessage">Đã có lỗi xảy ra.</p>
+            </div>
+
+            <div id="answerContent" class="answer-content hidden">
+              <p id="answeredQuery" class="answered-query"></p>
+
+              <section class="answer-block">
+                <span class="block-label">Tóm tắt</span>
+                <p id="summaryText"></p>
+              </section>
+
+              <section class="answer-block">
+                <span class="block-label">Các vấn đề chính</span>
+                <ol id="issueList" class="issue-list"></ol>
+              </section>
+
+              <section class="answer-block">
+                <span class="block-label">Bằng chứng tiêu biểu</span>
+                <div id="compactEvidence" class="compact-evidence"></div>
+              </section>
+
+              <section id="confidenceBox" class="confidence-box">
+                <div>
+                  <span>Độ tin cậy</span>
+                  <strong id="confidenceLabel">N/A</strong>
+                </div>
+                <p id="confidenceNote"></p>
+              </section>
+            </div>
+          </section>
+
+          <aside class="panel review-side-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Review tiêu biểu</p>
+                <h2>Top evidence</h2>
+              </div>
+            </div>
+            <div id="topEvidenceList" class="top-evidence-list">
+              <p class="muted-text">Chưa có review tiêu biểu.</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="panel evidence-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Bằng chứng</p>
+              <h2>Review được truy xuất</h2>
+            </div>
+            <span id="resultCount" class="soft-label">0 kết quả</span>
+          </div>
+          <div id="evidenceList" class="evidence-list"></div>
+          <details id="extraEvidenceDetails" class="extra-evidence hidden">
+            <summary>Xem thêm review</summary>
+            <div id="extraEvidenceList" class="evidence-list extra-grid"></div>
+          </details>
+        </section>
+
+        <details class="panel debug-panel">
+          <summary>Chi tiết kỹ thuật</summary>
+          <div id="debugPanel" class="debug-grid">
+            <p>Chưa có truy vấn nào được chạy.</p>
+          </div>
+        </details>
+      </section>
+
+      <section id="sentimentTab" class="tab-panel active">
+        <section class="panel sentiment-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Module 2</p>
+              <h2>Phân tích cảm xúc một review</h2>
+            </div>
+            <span id="sentimentModelBadge" class="soft-label">Đang kiểm tra</span>
+          </div>
+          <p class="muted-text">
+            Nhập một review sản phẩm thật để model dự đoán Tiêu cực / Trung lập / Tích cực.
+            Đây là input riêng của sentiment model, không phải câu hỏi RAG.
+          </p>
+          <label for="sentimentReview">Review sản phẩm</label>
+          <textarea
+            id="sentimentReview"
+            rows="5"
+            placeholder="Ví dụ: Shop giao sai màu, nhắn tin không trả lời."
+          >Shop giao sai màu, nhắn tin không trả lời.</textarea>
+          <button id="sentimentBtn" class="primary-btn" type="button">Phân tích sentiment</button>
+          <div id="sentimentResult" class="sentiment-result hidden"></div>
+          <p class="muted-text small-note">
+            Module 2 dùng để phân loại cảm xúc review. Trong RAG, sentiment chủ yếu được dùng như metadata/filter
+            để ưu tiên review tiêu cực, trung lập hoặc tích cực trong corpus.
+          </p>
+        </section>
+      </section>
+
+      <section id="techTab" class="tab-panel">
+        <section class="tech-grid">
+          <article class="metric-card">
+            <span>Kho review</span>
+            <strong id="docCount">N/A</strong>
+            <small>review/documents</small>
+          </article>
+          <article class="metric-card">
+            <span>Model embedding</span>
+            <strong id="modelName">N/A</strong>
+            <small id="modelCaption">Full name trong bảng kỹ thuật</small>
+          </article>
+          <article class="metric-card">
+            <span>Retrieval</span>
+            <div id="retrievalBadges" class="badge-row">
+              <span>Dense FAISS</span>
+              <span>Query expansion</span>
+              <span>Light rerank</span>
+            </div>
+          </article>
+          <article class="metric-card">
+            <span id="precisionLabel">Baseline P@5</span>
+            <strong id="precisionAt5">N/A</strong>
+            <small id="precisionCaption">Manual evaluation</small>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Kỹ thuật</p>
+              <h2>Cấu hình hệ thống</h2>
+            </div>
+          </div>
+          <div id="systemDetails" class="debug-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Export</p>
+              <h2>Tải kết quả lần chạy gần nhất</h2>
+            </div>
+          </div>
+          <div class="export-actions">
+            <button id="downloadJson" class="secondary-btn" type="button">Tải JSON</button>
+            <button id="downloadMarkdown" class="secondary-btn" type="button">Tải Markdown</button>
+            <button id="downloadCsv" class="secondary-btn" type="button">Tải CSV evidence</button>
+          </div>
+          <p class="muted-text small-note">Các nút export chỉ hoạt động sau khi bạn chạy RAG ít nhất một lần.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

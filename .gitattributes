@@ -1,0 +1,9 @@
+# Large model/data artifacts should be pushed with Git LFS.
+*.index filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.parquet filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+
+# Large processed datasets are kept versionable via LFS when Git LFS is enabled.
+data/processed/*.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/*.jsonl filter=lfs diff=lfs merge=lfs -text

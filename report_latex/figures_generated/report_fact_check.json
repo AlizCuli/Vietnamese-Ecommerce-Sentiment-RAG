@@ -1,0 +1,51 @@
+{
+  "sentiment_text_length": {
+    "min": 1,
+    "median": 10.0,
+    "mean": 13.129600929872142,
+    "max": 106
+  },
+  "rag_final_source": "models\\module4\\review_metadata.parquet",
+  "rag_final_documents": 82677,
+  "rag_category_distribution": [
+    {
+      "category": "Fashion",
+      "documents": 24989
+    },
+    {
+      "category": "Electronic",
+      "documents": 19645
+    },
+    {
+      "category": "HealthBeauty",
+      "documents": 13739
+    },
+    {
+      "category": "BabiesToys",
+      "documents": 10827
+    },
+    {
+      "category": "HomeLifestyle",
+      "documents": 9798
+    },
+    {
+      "category": "App",
+      "documents": 1978
+    },
+    {
+      "category": "Cosmetic",
+      "documents": 1262
+    },
+    {
+      "category": "Mobile",
+      "documents": 439
+    }
+  ],
+  "rag_sentiment_distribution": {
+    "positive": 48943,
+    "negative": 23729,
+    "neutral": 10005
+  },
+  "rag_missing_rating": 33115,
+  "web_screenshot_candidates": []
+}

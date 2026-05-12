@@ -1,0 +1,594 @@
+{
+  "created_at_utc": "2026-05-10T13:31:06.778280+00:00",
+  "project_dir": "C:\\Users\\PC\\PycharmProjects\\PythonProject\\ML\\PROJECT\\Sàn TMDT\\Chí Bình\\ecommerce_sentiment_rag_final_submission_extracted",
+  "missing_optional_paths": [
+    "figures/module1"
+  ],
+  "files": [
+    {
+      "path": "EXPLAIN_PROJECT_FOR_BEGINNER.md",
+      "size_bytes": 14854,
+      "sha256": "d89ce5d3ee15379a133272d0f653ace31ce81f5552f4e0bf202c01e75f399827"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 2718,
+      "sha256": "c9fb1692b2d654650d8ec40b9d0a65299e0584320b50665481cf328b0067371f"
+    },
+    {
+      "path": "README_DEMO.md",
+      "size_bytes": 6578,
+      "sha256": "9dde340ef6920d45cec31757e81b26fb7938ec5bf950b25951b5d8ff3e8211cf"
+    },
+    {
+      "path": "README_MODULE1.md",
+      "size_bytes": 2388,
+      "sha256": "3969015d0a0d96c34e685791e9a41c2ec0958081c30f135975509a1e72dbebe2"
+    },
+    {
+      "path": "README_MODULE2.md",
+      "size_bytes": 2928,
+      "sha256": "d836d290012610d93049f64e41042ad15eb9f33d2acc6d74518bdc8e283509a1"
+    },
+    {
+      "path": "README_MODULE3.md",
+      "size_bytes": 1440,
+      "sha256": "8944f37955e185177b7c6f48064c7c2ef128f7dd2883826e6e010cdd4442386b"
+    },
+    {
+      "path": "README_MODULE4.md",
+      "size_bytes": 3811,
+      "sha256": "adb20cdaf98af8e14d5a6833cc67edc05bb1f04d6fdf314c3a49a105ff3d3b0f"
+    },
+    {
+      "path": "README_MODULE5.md",
+      "size_bytes": 2884,
+      "sha256": "22090d1ed5afbf57e9186f75a4d31f1a810a268e8c323153b8a95c5ab82c41c5"
+    },
+    {
+      "path": "README_MODULE6.md",
+      "size_bytes": 3555,
+      "sha256": "39bcd75c141d4d82c5045cd04a0f98d98ff67c00fbbcd6591ff493252b938776"
+    },
+    {
+      "path": "README_RAG_WEBAPP.md",
+      "size_bytes": 4158,
+      "sha256": "1189b8926a60c49098987086e80404da81caf8b85908dc6d9917612282ba7221"
+    },
+    {
+      "path": "UPDATE_NOTES_MODULE1_2.md",
+      "size_bytes": 954,
+      "sha256": "ea9558d6f792f02874fb8d320bfbc17e9bce7fd9a1c1be03736cb623c52adbad"
+    },
+    {
+      "path": "backend/__init__.py",
+      "size_bytes": 44,
+      "sha256": "272c2c50b15c0498d323e1893b49aaeb41085986fa4d12fc009d54f89ecfc0fd"
+    },
+    {
+      "path": "backend/app.py",
+      "size_bytes": 17059,
+      "sha256": "9e7b0847473355e535643c6ca4b96eaf222df829809234f434366bc629d5f1b3"
+    },
+    {
+      "path": "data/eval/module6_queries.jsonl",
+      "size_bytes": 1191,
+      "sha256": "e0cbd719ad3e9e59e9c02f4e348fa75584d86f6593bc8e91903068ff756c45fe"
+    },
+    {
+      "path": "data/evaluation_queries.json",
+      "size_bytes": 2223,
+      "sha256": "345f5e074dedf80db1b73ff23b005d963b0e2fce4699eec9ade01b9ba3b3eb9a"
+    },
+    {
+      "path": "data/processed/rag_corpus.csv",
+      "size_bytes": 55165295,
+      "sha256": "c52e535e726883315390618120bd2a1bd5f24ba77afe9ef0f2b93ad62e7a26c3"
+    },
+    {
+      "path": "data/processed/rag_corpus_module4.csv",
+      "size_bytes": 88008264,
+      "sha256": "1b6190a8aa42729ac367b5ff8540a917b07dec435ea68a5ee9e1a63ed672856a"
+    },
+    {
+      "path": "data/processed/rag_documents.jsonl",
+      "size_bytes": 62180572,
+      "sha256": "0bf225b62b19a560eacad1ed5a4278de1d673472c29ed9bc8ab3344bfd244e67"
+    },
+    {
+      "path": "data/processed/sentiment_duplicates_report.csv",
+      "size_bytes": 49194,
+      "sha256": "e97c9c78e8916e330bbc07d5f48381f3528addc05cd063c748233f3cfd563084"
+    },
+    {
+      "path": "data/processed/sentiment_reviews.csv",
+      "size_bytes": 553522,
+      "sha256": "aaf79b8dd9163138c5e9c9783af5ca0a4f7af8dc83e263d64957add0f8ada765"
+    },
+    {
+      "path": "data/processed/sentiment_reviews_5class.csv",
+      "size_bytes": 599997,
+      "sha256": "00838020d36aa09f6ed01338441a50fd2626800c8e9717d4f61d8c27452e1b88"
+    },
+    {
+      "path": "data/reports/data_summary.json",
+      "size_bytes": 1258,
+      "sha256": "609b58471b61fba90032373b8941e26327068a65b5647f98e15e65535652d7c0"
+    },
+    {
+      "path": "data/reports/rag_category_split_distribution.csv",
+      "size_bytes": 132,
+      "sha256": "58002e26bf4c2f81e7d8d278c9a3a23ca4e64617c180db6797971d53d3b9c0d2"
+    },
+    {
+      "path": "data/reports/sentiment_label_distribution.csv",
+      "size_bytes": 100,
+      "sha256": "0d84780070bae0600ff7b450d101a133a277bdb23ba73b971ed67bbcd0facbc6"
+    },
+    {
+      "path": "docs/module6_hybrid_reranking.md",
+      "size_bytes": 7146,
+      "sha256": "105959a93b8a3740455db2f3d33046740a929c405e85f40e2340212211865006"
+    },
+    {
+      "path": "figures/module2/linear_svm_confusion_matrix.png",
+      "size_bytes": 50585,
+      "sha256": "a55376c4902173e2359aee8d0963d899900e59860e907ec9412cd6544de09025"
+    },
+    {
+      "path": "figures/module2/logistic_regression_confusion_matrix.png",
+      "size_bytes": 53101,
+      "sha256": "478b8847f946c3ffdbcaaad704ce0f207eda4bef96394197a43569d4be4fa171"
+    },
+    {
+      "path": "figures/module2/model_comparison_accuracy.png",
+      "size_bytes": 49791,
+      "sha256": "70d530884b2a7ac182b2260992c68dcdb930a709d0b15c116dadf4628b496860"
+    },
+    {
+      "path": "figures/module2/model_comparison_macro_f1.png",
+      "size_bytes": 48919,
+      "sha256": "3ce9e0a9700c9cd4f78965d03ae189ee863e6760afdab93a20676e073ed52d4d"
+    },
+    {
+      "path": "figures/module3/rag_category_distribution.png",
+      "size_bytes": 60964,
+      "sha256": "62517c1bef070c1deb93cb35d30631a9f40e897ed2756a5eb29e4b5e5fc4d3a6"
+    },
+    {
+      "path": "figures/module3/rag_rating_distribution.png",
+      "size_bytes": 29833,
+      "sha256": "0a6f0912b172d03bdec64d387556ef126c2a227454967af09f6aaf22bf3eb68c"
+    },
+    {
+      "path": "figures/module3/sentiment_3class_distribution.png",
+      "size_bytes": 33606,
+      "sha256": "e167a073a335c7a7c1e0441ba2bf0601a356e63b264653ff0e00d2a4fa4a5791"
+    },
+    {
+      "path": "figures/module3/sentiment_5class_distribution.png",
+      "size_bytes": 36798,
+      "sha256": "84b5d6da3a0dcccbc99153804e20316befe2050099b5ebeb515421cde9aa47af"
+    },
+    {
+      "path": "figures/module3/sentiment_text_length_distribution.png",
+      "size_bytes": 43038,
+      "sha256": "736b26dac69bdafbb5eac3ee947d9077ba770852ab176fd765df34669989d6d9"
+    },
+    {
+      "path": "figures/module4/rag_evidence_quality_counts.png",
+      "size_bytes": 36342,
+      "sha256": "dc449a1f76b2064c8a897346eeed41581b86f35d7ad5e5bbc973b1fe2573dad3"
+    },
+    {
+      "path": "figures/module4/retrieval_eval_summary.png",
+      "size_bytes": 23064,
+      "sha256": "315cb7e8f0376fcf826b2bad720ee9281ee671b6bb07c55900e9e577ce1b6aca"
+    },
+    {
+      "path": "figures/module5/manual_precision_at_k.png",
+      "size_bytes": 25652,
+      "sha256": "58a9e2e73eaf1068b3dab6b14569fb94d4ca441addf1c83e62a43586e89103df"
+    },
+    {
+      "path": "figures/module5/module2_model_comparison.png",
+      "size_bytes": 36789,
+      "sha256": "db54678fa6c9238b22d2eb9a00121e7b86e6df8c23a420d42ec63c193a926fcf"
+    },
+    {
+      "path": "figures/module5/module3_sentiment_distribution.png",
+      "size_bytes": 27933,
+      "sha256": "2c92205fc2aa7029839a89f12400d9348f0295073bdc072ba253501831fcf594"
+    },
+    {
+      "path": "figures/module6/module6_retrieval_comparison_reference.png",
+      "size_bytes": 61490,
+      "sha256": "7c21e9eedac6107eb73f784b734fa0e4257b997870747554a288caf28dfcc3e5"
+    },
+    {
+      "path": "frontend/app.js",
+      "size_bytes": 24906,
+      "sha256": "8cc7fefdc2671aad5f19bd9b3e25ee984916638781665dff8b8a7b7048426098"
+    },
+    {
+      "path": "frontend/index.html",
+      "size_bytes": 13481,
+      "sha256": "bdd4ede37e538befdd54914e1864984cdbb049ad16b85c59ae9e6efa2bbc2985"
+    },
+    {
+      "path": "frontend/styles.css",
+      "size_bytes": 14306,
+      "sha256": "24b797c4de1c5b8d7a4601ad7370f959c81ade6bbc9b50f56108d71883eb7654"
+    },
+    {
+      "path": "models/module2/best_model.joblib",
+      "size_bytes": 839680,
+      "sha256": "9cf968a6ff759297541362a928a6410bb14dd83ef3221a80af8bb32bd1c27688"
+    },
+    {
+      "path": "models/module2/label_mapping.json",
+      "size_bytes": 457,
+      "sha256": "7fcf173dcb3b8937b3721c4d92b3f202b580e91126b20497021b901d7d15c6e1"
+    },
+    {
+      "path": "models/module2/tfidf_linearsvm.joblib",
+      "size_bytes": 839680,
+      "sha256": "9cf968a6ff759297541362a928a6410bb14dd83ef3221a80af8bb32bd1c27688"
+    },
+    {
+      "path": "models/module2/tfidf_logreg.joblib",
+      "size_bytes": 839812,
+      "sha256": "8a7f97cdc35fc148d9bed29a6cc846ffa60593401e1100b6bb21b8e993b0d484"
+    },
+    {
+      "path": "models/module4/module4_index_config.json",
+      "size_bytes": 458,
+      "sha256": "5bce42d73308540f54261d6739435b651e3b13d0c73aa28e0173d75026ea3fc8"
+    },
+    {
+      "path": "models/module4/review_faiss.index",
+      "size_bytes": 126991917,
+      "sha256": "3c96e386872c337a4b73324d58b699544e04ccaadb58567913cc07faa05b75bb"
+    },
+    {
+      "path": "models/module4/review_metadata.parquet",
+      "size_bytes": 18836508,
+      "sha256": "c46a597249fe97e9d92880bd78dab9d39cda22fc01152f345af90eabec9acb41"
+    },
+    {
+      "path": "report/final_report_sections.md",
+      "size_bytes": 3116,
+      "sha256": "da08786fdbc464db21e11d34b40f1587beb0fd2b84ba96a3ecc34b6e55527296"
+    },
+    {
+      "path": "report/report_skeleton.md",
+      "size_bytes": 193,
+      "sha256": "3891c750e83a523189c53a056fe0d76fa092cccfbc8a281ae45633823b0bcf60"
+    },
+    {
+      "path": "reports/module6_retrieval_eval_reference_from_hybrid_project.csv",
+      "size_bytes": 15211,
+      "sha256": "4f0f8b66e20d4a64a6ea1efccb438f0870113b6b6a061590483ee0c40aabf0c6"
+    },
+    {
+      "path": "requirements_module1_2.txt",
+      "size_bytes": 66,
+      "sha256": "caaa1e1b2629653938cd25650094abce47f40da4a85e7b7775e639b90fae3559"
+    },
+    {
+      "path": "requirements_module4.txt",
+      "size_bytes": 78,
+      "sha256": "cc8dea59da5d1d11f8bcffb388cde8367cf4d7bd89cd772b5cbc0a6a7b2a79bd"
+    },
+    {
+      "path": "requirements_module6.txt",
+      "size_bytes": 68,
+      "sha256": "62e45ae80bc6dc51ca5d4b75e87c00f909ab71f5acf9b2eb88c7e72fb9f235c2"
+    },
+    {
+      "path": "requirements_webapp.txt",
+      "size_bytes": 63,
+      "sha256": "c8fc2a8f0c61e1989650a47f7730fffa7ee3a2f139ccd92933d7047ed96673d8"
+    },
+    {
+      "path": "results/module2/error_analysis_linear_svm.csv",
+      "size_bytes": 5434,
+      "sha256": "9c174682266e8775003683b0f811d0c3dfc1f10d17a721921cb5f1841e221ec9"
+    },
+    {
+      "path": "results/module2/error_analysis_logistic_regression.csv",
+      "size_bytes": 7618,
+      "sha256": "df86c4c8429fbd6a5e0a2fedf407c5467484375248dcae0714ef53d33915485c"
+    },
+    {
+      "path": "results/module2/linear_svm_classification_report.csv",
+      "size_bytes": 1046,
+      "sha256": "35cdfd1c65e06221eac943d41bec048a1031eaec8e23265f521d71a7446a8af3"
+    },
+    {
+      "path": "results/module2/linear_svm_predictions.csv",
+      "size_bytes": 199117,
+      "sha256": "09452817ddc47884bf58dda38ed6b9b4bc407e0a68b8992436e86ffd5726a35e"
+    },
+    {
+      "path": "results/module2/logistic_regression_classification_report.csv",
+      "size_bytes": 1117,
+      "sha256": "86962467d3b9285561acac93d80a179bee1cc142b9af70bfc47424bdb5e12db5"
+    },
+    {
+      "path": "results/module2/logistic_regression_predictions.csv",
+      "size_bytes": 213050,
+      "sha256": "dde205b876d5902baf01095105de56d046869640bd7fafdb0665f9bfaf5e54f0"
+    },
+    {
+      "path": "results/module2/metrics_summary.csv",
+      "size_bytes": 2366,
+      "sha256": "7e06a68d775ac3a0454eea31368f1b161a6c62d8b493e65836b8d334bcf273a2"
+    },
+    {
+      "path": "results/module2/metrics_summary.json",
+      "size_bytes": 6938,
+      "sha256": "1f2a0065a2be28109ccc4fe9200d3b15a20a12fda530e7f42b68474d4d568bbb"
+    },
+    {
+      "path": "results/module2/tuning_results.csv",
+      "size_bytes": 15941,
+      "sha256": "e3736b08091d0c8042edec69bdd8d1db2237c83cb1c42053e0d62532dcceb995"
+    },
+    {
+      "path": "results/module3/overall_sentiment_distribution.csv",
+      "size_bytes": 128,
+      "sha256": "c2fd106630c1f3786a6a6c2f20ab03d7bb4d3ec73170df2c59e05348061d2a72"
+    },
+    {
+      "path": "results/module3/rag_sentiment_summary.json",
+      "size_bytes": 528,
+      "sha256": "9a86177f020d6ee21978bce662f5ebbbae0cdb31385a0612008351a8b1b94ed5"
+    },
+    {
+      "path": "results/module3/rating_sentiment_crosstab.csv",
+      "size_bytes": 94,
+      "sha256": "f88969aed497a905500652040b6f4db6faa4e849f008b6332f3a5c2835954c27"
+    },
+    {
+      "path": "results/module3/top_negative_reviews.csv",
+      "size_bytes": 24873,
+      "sha256": "f85b7d88eebae93efb09ceeacf1f5a2d05caec6910ff4d08a574d02ef020ce8f"
+    },
+    {
+      "path": "results/module4/last_retrieval_results.csv",
+      "size_bytes": 11999,
+      "sha256": "3e97a24917edb3a09999fbd6f63f3b545f1581942a14c4ccc7b29791ee2bcc1e"
+    },
+    {
+      "path": "results/module4/manual_precision_at_k_sheet.csv",
+      "size_bytes": 164319,
+      "sha256": "7d09934e485d13e021678120f725a976b14688e4e9d0a00881ba37558d8061b6"
+    },
+    {
+      "path": "results/module4/module4_build_summary.json",
+      "size_bytes": 425,
+      "sha256": "d51b98804fe53a16c9b9248dbb9eab847879a8275d43d24c94994aabe25701d4"
+    },
+    {
+      "path": "results/module4/module4_prepare_summary.json",
+      "size_bytes": 620,
+      "sha256": "47c2b4f3ade5dac3f6affbf127e37d9628442d6d4d27a1cf869309e04719a246"
+    },
+    {
+      "path": "results/module4/rag_outputs.json",
+      "size_bytes": 5926,
+      "sha256": "547571c3dc158c34ac50e592fc570469908e0f66d1ed362083101a72d10e8a7f"
+    },
+    {
+      "path": "results/module4/rag_outputs.md",
+      "size_bytes": 3690,
+      "sha256": "e5ae998ac591ce6013abcb315cc9e7c881dcbed8de834cd6b9ac35f0e403c0b0"
+    },
+    {
+      "path": "results/module4/rag_outputs_upgraded.json",
+      "size_bytes": 2174,
+      "sha256": "f9a0db12cf0c033407e3934cf5999430edabe361167809f7a77d1b480344be95"
+    },
+    {
+      "path": "results/module4/rag_outputs_upgraded_smoke.json",
+      "size_bytes": 7999,
+      "sha256": "58c1d72e4e8bac8a672cc75e4b83d5d77029e24f89ea91bb15653e98d0746194"
+    },
+    {
+      "path": "results/module4/retrieval_eval_examples.jsonl",
+      "size_bytes": 397004,
+      "sha256": "54704c659d79cbac50a5e80192a02085213e9f19962c572c1c2bf464c938cf1e"
+    },
+    {
+      "path": "results/module4/retrieval_eval_summary.csv",
+      "size_bytes": 6034,
+      "sha256": "c381bb5c7b9263ab1880eba0b6604ebeb2cea6b9c76cc981638fff0a90f67ebb"
+    },
+    {
+      "path": "results/module5/error_analysis.md",
+      "size_bytes": 2991,
+      "sha256": "5db8a733bb3cf19738f69b9df62b87046b4e6b0310e6152456b8026fa65cfbb6"
+    },
+    {
+      "path": "results/module5/final_conclusion.md",
+      "size_bytes": 726,
+      "sha256": "a4b7dad127a55e71ef097aef864d02f1a4061cffb0731461c3ddb17da5730752"
+    },
+    {
+      "path": "results/module5/final_discussion.md",
+      "size_bytes": 971,
+      "sha256": "cede5cdaf9d93e1c82a2ae70847eb7bfb13179596bcf766b4a4b57112f2b22b6"
+    },
+    {
+      "path": "results/module5/final_metrics_summary.csv",
+      "size_bytes": 5757,
+      "sha256": "978c69c4b46a3d768c8490ca4a31322be790265aea6bd8900c3d713ff8fe0b04"
+    },
+    {
+      "path": "results/module5/final_project_summary.json",
+      "size_bytes": 552,
+      "sha256": "2be74fd3b2fbf9a0fdaaace0db7a8e1e4fe6b9da7eee6a4bfd9c704a573a5591"
+    },
+    {
+      "path": "results/module5/manual_precision_overall.csv",
+      "size_bytes": 144,
+      "sha256": "2c8ef69159af13bce53d40c685ec2780872db04f30579eb32521f19cb5b21c10"
+    },
+    {
+      "path": "results/module5/manual_precision_summary.csv",
+      "size_bytes": 4500,
+      "sha256": "b6ed1c63f7dea8ba24b260f17f07198a8269e389bee917ecc92bf74cbc03cfda"
+    },
+    {
+      "path": "results/module6/last_benchmark_console_reference.txt",
+      "size_bytes": 3822,
+      "sha256": "015f6333836a5c271a70ac39f0342272d9e4eaa0cc3def2a732f47f9f23d0daa"
+    },
+    {
+      "path": "results/module6/last_hybrid_rerank_demo.json",
+      "size_bytes": 10835,
+      "sha256": "4ef0f2b8375497dd9aa60102ffc4892864ff11bb05a0cf7eb53a5ec3286f77f2"
+    },
+    {
+      "path": "results/module6/last_hybrid_rerank_demo_reference.json",
+      "size_bytes": 22048,
+      "sha256": "dda52049f9e6c5f0b52ac9c6701d768c6b5b688ceca96b083c1c419df4071daa"
+    },
+    {
+      "path": "scripts/evaluate_module6_retrieval.py",
+      "size_bytes": 15866,
+      "sha256": "2b60b35ac1c45757dc1325795e264ddf9268d13a1c9a4b9ceb0aeff1819757c3"
+    },
+    {
+      "path": "scripts/install_rag_fixed_outputs.py",
+      "size_bytes": 4506,
+      "sha256": "e5e4d16ac26003b31e3fa63e59ce0cfc15d80f8811b0b42239a29f135f246e1a"
+    },
+    {
+      "path": "scripts/package_final_submission.py",
+      "size_bytes": 4568,
+      "sha256": "a5901ec18a10a689d825e9841cdffcc2774d35a27c774fea435ebff8cc77389c"
+    },
+    {
+      "path": "scripts/run_module1.sh",
+      "size_bytes": 96,
+      "sha256": "b112df59078d71c46f3f5d40c2ec738db14304047657e51331e21397fe914114"
+    },
+    {
+      "path": "scripts/run_module2.sh",
+      "size_bytes": 119,
+      "sha256": "0891408ca7184400a5afdff069de88d3cd5bf3ee3b1910ca346dbc43beefb9d8"
+    },
+    {
+      "path": "scripts/run_module4.sh",
+      "size_bytes": 454,
+      "sha256": "16883674d8299fc53d3dff5c87c1a9bff4e5c5710df8f71ac909355f29437921"
+    },
+    {
+      "path": "scripts/run_module5.sh",
+      "size_bytes": 539,
+      "sha256": "7e85853073aaafb7bd44f619c9d28b45564910bff4598f3701aa88e9d3cdc16d"
+    },
+    {
+      "path": "scripts/run_module6_hybrid_rerank_demo.py",
+      "size_bytes": 10900,
+      "sha256": "95983ab85797b8e59f1645b99516bb62049a7c265101551302d1feaf11d91946"
+    },
+    {
+      "path": "scripts/run_rag_webapp.py",
+      "size_bytes": 972,
+      "sha256": "0e0f0b6e5863638d9da57560895de05ce7beacdebe29d2f0a5f0f12227051b5c"
+    },
+    {
+      "path": "src/module1_data_layer.py",
+      "size_bytes": 33693,
+      "sha256": "92a2ec42c7b53f98389cdbda55983019f7ea443a29eaf78d504828a176af6771"
+    },
+    {
+      "path": "src/module2_baseline_sentiment_classification.py",
+      "size_bytes": 30158,
+      "sha256": "bc44f0f0487af0d7808e90aca4f01044e5ce96ed53ae693b52f52dec3ad98adb"
+    },
+    {
+      "path": "src/module4_build_index.py",
+      "size_bytes": 5589,
+      "sha256": "421cfd2852a139513db4be3305b58186e2fd2d8f7543759366b9ee7cb9daab38"
+    },
+    {
+      "path": "src/module4_evaluate.py",
+      "size_bytes": 6864,
+      "sha256": "bbc1660dd9ac637dfb75586b4bdc4d8f25f448a610bc900d2811d16121e54480"
+    },
+    {
+      "path": "src/module4_prepare_inputs.py",
+      "size_bytes": 11624,
+      "sha256": "f448d67c3344239c862ddfee677172f5213b3dc1f8f0244f3ae845cfc7bf6967"
+    },
+    {
+      "path": "src/module4_rag_pipeline.py",
+      "size_bytes": 13624,
+      "sha256": "d12cb895e216807b68fd9303b8f692dd0f97387a78eae5313eaf2f2cb2597667"
+    },
+    {
+      "path": "src/module4_rag_pipeline_upgraded.py",
+      "size_bytes": 14286,
+      "sha256": "df74ce8b4ff5b72ca09b7e1d207ed8eceb246ec8498cf480530cdd8be9ea54ae"
+    },
+    {
+      "path": "src/module4_retrieve.py",
+      "size_bytes": 9257,
+      "sha256": "f51cf34a29acdde6672e00c784d92b8bf026097fc0f76f3d6888fe9becc6ea6a"
+    },
+    {
+      "path": "src/module4_retrieve_upgraded.py",
+      "size_bytes": 19362,
+      "sha256": "4ebd5b51e37948837dc84672244f32bbdf9dbafb69fde666c88988bba2ba4ce0"
+    },
+    {
+      "path": "src/module5_collect_results.py",
+      "size_bytes": 10396,
+      "sha256": "bc2c74cce0dad721101e3d5d0b5f758ff17d3db5dc72c618c213795a6ef6140f"
+    },
+    {
+      "path": "src/module5_error_analysis.py",
+      "size_bytes": 6475,
+      "sha256": "d9f90eaa57592a7361c561b8b6d9520bebdadea5cf417ce7d738ef4515e75366"
+    },
+    {
+      "path": "src/module5_generate_figures.py",
+      "size_bytes": 4015,
+      "sha256": "a2bf1428f62ac5382945af55173d21476ee91c534f896c1a624200d7f30dc74d"
+    },
+    {
+      "path": "src/module5_generate_report_sections.py",
+      "size_bytes": 6892,
+      "sha256": "3c5abf8cbbd4112ba96a360837aacad38cd921209bd19d5a5efc6b4a953a0373"
+    },
+    {
+      "path": "src/module5_manual_retrieval_eval.py",
+      "size_bytes": 3869,
+      "sha256": "6e0d02ec32f215d7a72763cf6cfebad0af2a24c965678e26658a156d51685500"
+    },
+    {
+      "path": "src/module6_aspect_sentiment.py",
+      "size_bytes": 8252,
+      "sha256": "69e7b5b5d9e43c943043aa352a664099acc9595228f90fe67646ddb61d0aa81d"
+    },
+    {
+      "path": "src/module6_hybrid_retrieval.py",
+      "size_bytes": 14065,
+      "sha256": "8475c577e474ec5b1368b66200abe71540a79533f6b0094b4b8bd5de77b8c807"
+    },
+    {
+      "path": "src/module6_query_intent.py",
+      "size_bytes": 7406,
+      "sha256": "608aa4537dea906cdae7eed974e66de3a1e3a0d6a3497713baa032ca9080d18c"
+    },
+    {
+      "path": "src/module6_reranker.py",
+      "size_bytes": 14001,
+      "sha256": "47f9ca64c953e4ec4c93196e6d465814158ed4cc4cea5999e12cd4a346ccdd3f"
+    }
+  ]
+}

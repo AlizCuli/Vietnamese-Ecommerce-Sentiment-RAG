@@ -1,0 +1,239 @@
+{
+  "query": "Có vấn đề gì về đóng gói không?",
+  "target_aspect": "dong_goi",
+  "results": [
+    {
+      "doc_id": "lazada_babies_toys_102308034_102308034_16",
+      "retrieval_text": "Danh mục: babies_toys. Loại sản phẩm: babies_toys. Tên sản phẩm: Ghế Tắm Lưới Tiện Dụng cho bé yêu. Nội dung đánh giá: Đóng gói quá sơ Sài gây rách lưới.",
+      "comment": "Đóng gói quá sơ Sài gây rách lưới",
+      "text_length": 8,
+      "category": "BabiesToys",
+      "split": "train",
+      "rating": NaN,
+      "product_name": "Ghế Tắm Lưới Tiện Dụng cho bé yêu",
+      "product_id": "102308034",
+      "comment_id": "102308034",
+      "product_url": NaN,
+      "sub_category": "babies_toys",
+      "helpfulness_score": NaN,
+      "detail_rating": NaN,
+      "key_aspects": NaN,
+      "decision_making_advice": NaN,
+      "image_helpfulness": NaN,
+      "source_file": "trucmtnguyen/multimodal-product-reviews-lazada/babies_toys.json",
+      "has_response": false,
+      "predicted_sentiment": "neutral",
+      "sentiment_confidence": 0.65,
+      "sentiment_margin": NaN,
+      "sentiment_source": NaN,
+      "review_id": "lazada_babies_toys_102308034_102308034_16",
+      "text": "Đóng gói quá sơ Sài gây rách lưới",
+      "bm25_rank": 2,
+      "dense_rank": null,
+      "rrf_score": 0.016129032258064516,
+      "source_flags": [
+        "bm25_expanded"
+      ],
+      "detected_aspects": [
+        "dong_goi"
+      ],
+      "aspect_sentiments": {
+        "dong_goi": "negative"
+      }
+    },
+    {
+      "doc_id": "rag_HomeLifestyle_15922336091",
+      "retrieval_text": "Danh mục: HomeLifestyle. Loại sản phẩm: DoGiaDung. Tên sản phẩm: Cốc Xay Sinh Tố Mini Cầm Tay, Máy Xay Sinh Tố Sạc Pin Tích Điện Kèm Ống Hút. Rating: 5. Nội dung đánh giá: Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.. Đánh giá chi tiết: product_quality: 5 seller_service: 5 delivery_service: 5.",
+      "comment": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+      "text_length": 23,
+      "category": "HomeLifestyle",
+      "split": "train",
+      "rating": 5.0,
+      "product_name": "Cốc Xay Sinh Tố Mini Cầm Tay, Máy Xay Sinh Tố Sạc Pin Tích Điện Kèm Ống Hút",
+      "product_id": "28605620971",
+      "comment_id": "15922336091",
+      "product_url": "https://shopee.vn/C%E1%BB%91c-Xay-Sinh-T%E1%BB%91-Mini-C%E1%BA%A7m-Tay-M%C3%A1y-Xay-Sinh-T%E1%BB%91-S%E1%BA%A1c-Pin-T%C3%ADch-%C4%90i%E1%BB%87n-K%C3%A8m-%E1%BB%90ng-H%C3%BAt-i.715542898.28605620971?sp_atk=ee7bd6f9-ea06-491f-9692-acf147bd45be&xptdk=ee7bd6f9-ea06-491f-9692-acf147bd45be",
+      "sub_category": "DoGiaDung",
+      "helpfulness_score": 3.0,
+      "detail_rating": "product_quality: 5 seller_service: 5 delivery_service: 5",
+      "key_aspects": 2.0,
+      "decision_making_advice": 2.0,
+      "image_helpfulness": 4.0,
+      "source_file": "RAG/HomeLifestyle-train.json",
+      "has_response": true,
+      "predicted_sentiment": "negative",
+      "sentiment_confidence": 0.5607561326085064,
+      "sentiment_margin": 0.7676206594713624,
+      "sentiment_source": "inferred:tfidf_linearsvm.joblib",
+      "review_id": "rag_HomeLifestyle_15922336091",
+      "text": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+      "bm25_rank": 3,
+      "dense_rank": null,
+      "rrf_score": 0.015873015873015872,
+      "source_flags": [
+        "bm25_expanded"
+      ],
+      "detected_aspects": [
+        "chat_luong",
+        "giao_hang",
+        "dong_goi",
+        "mau_ma_size_mau"
+      ],
+      "aspect_sentiments": {
+        "chat_luong": "neutral",
+        "giao_hang": "neutral",
+        "dong_goi": "negative",
+        "mau_ma_size_mau": "neutral"
+      }
+    },
+    {
+      "doc_id": "rag_HealthBeauty_14849780234",
+      "retrieval_text": "Danh mục: HealthBeauty. Loại sản phẩm: DungCuMassageTriLieu. Tên sản phẩm: Máy Massage Xung Điện Trị Liệu 4 Miếng Dán Massage Cổ Vai Gáy.. Rating: 5. Nội dung đánh giá: Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.. Đánh giá chi tiết: product_quality: 5 seller_service: 5 delivery_service: 5 driver_service: 5.",
+      "comment": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+      "text_length": 33,
+      "category": "HealthBeauty",
+      "split": "train",
+      "rating": 5.0,
+      "product_name": "Máy Massage Xung Điện Trị Liệu 4 Miếng Dán Massage Cổ Vai Gáy.",
+      "product_id": "18678561795",
+      "comment_id": "14849780234",
+      "product_url": "https://shopee.vn/M%C3%A1y-Massage-Xung-%C4%90i%E1%BB%87n-Tr%E1%BB%8B-Li%E1%BB%87u-4-Mi%E1%BA%BFng-D%C3%A1n-Massage-C%E1%BB%95-Vai-G%C3%A1y.-i.579128928.18678561795?sp_atk=86e8a7af-c051-41e0-99ed-6c2c5bd3e3f9&xptdk=86e8a7af-c051-41e0-99ed-6c2c5bd3e3f9",
+      "sub_category": "DungCuMassageTriLieu",
+      "helpfulness_score": 3.0,
+      "detail_rating": "product_quality: 5 seller_service: 5 delivery_service: 5 driver_service: 5",
+      "key_aspects": 5.0,
+      "decision_making_advice": 3.0,
+      "image_helpfulness": 2.0,
+      "source_file": "RAG/HealthBeauty-train.json",
+      "has_response": true,
+      "predicted_sentiment": "negative",
+      "sentiment_confidence": 0.469664563350854,
+      "sentiment_margin": 0.55683821371014,
+      "sentiment_source": "inferred:tfidf_linearsvm.joblib",
+      "review_id": "rag_HealthBeauty_14849780234",
+      "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+      "bm25_rank": 4,
+      "dense_rank": null,
+      "rrf_score": 0.015625,
+      "source_flags": [
+        "bm25_expanded"
+      ],
+      "detected_aspects": [
+        "chat_luong",
+        "giao_hang",
+        "dong_goi",
+        "gia",
+        "dich_vu_shop"
+      ],
+      "aspect_sentiments": {
+        "chat_luong": "negative",
+        "giao_hang": "positive",
+        "dong_goi": "negative",
+        "gia": "positive",
+        "dich_vu_shop": "positive"
+      }
+    }
+  ],
+  "aspect_summary": {
+    "chat_luong": {
+      "sentiment": "negative",
+      "evidence": [
+        {
+          "review_id": "rag_HomeLifestyle_15922336091",
+          "text": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+          "sentiment": "neutral",
+          "rank": null,
+          "score": 0.015873015873015872
+        },
+        {
+          "review_id": "rag_HealthBeauty_14849780234",
+          "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+          "sentiment": "negative",
+          "rank": null,
+          "score": 0.015625
+        }
+      ]
+    },
+    "dich_vu_shop": {
+      "sentiment": "positive",
+      "evidence": [
+        {
+          "review_id": "rag_HealthBeauty_14849780234",
+          "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+          "sentiment": "positive",
+          "rank": null,
+          "score": 0.015625
+        }
+      ]
+    },
+    "dong_goi": {
+      "sentiment": "negative",
+      "evidence": [
+        {
+          "review_id": "lazada_babies_toys_102308034_102308034_16",
+          "text": "Đóng gói quá sơ Sài gây rách lưới",
+          "sentiment": "negative",
+          "rank": null,
+          "score": 0.016129032258064516
+        },
+        {
+          "review_id": "rag_HomeLifestyle_15922336091",
+          "text": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+          "sentiment": "negative",
+          "rank": null,
+          "score": 0.015873015873015872
+        },
+        {
+          "review_id": "rag_HealthBeauty_14849780234",
+          "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+          "sentiment": "negative",
+          "rank": null,
+          "score": 0.015625
+        }
+      ]
+    },
+    "gia": {
+      "sentiment": "positive",
+      "evidence": [
+        {
+          "review_id": "rag_HealthBeauty_14849780234",
+          "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+          "sentiment": "positive",
+          "rank": null,
+          "score": 0.015625
+        }
+      ]
+    },
+    "giao_hang": {
+      "sentiment": "positive",
+      "evidence": [
+        {
+          "review_id": "rag_HomeLifestyle_15922336091",
+          "text": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+          "sentiment": "neutral",
+          "rank": null,
+          "score": 0.015873015873015872
+        },
+        {
+          "review_id": "rag_HealthBeauty_14849780234",
+          "text": "Máy mạnh, nhiều chế độ massage. Dễ sử dụng. Giao hàng nhanh mà gói hơi sơ sài, nhận hộp bị móp gần rách hết. Nhưng máy ok. Giá rẻ. Nên cho shop 5*.",
+          "sentiment": "positive",
+          "rank": null,
+          "score": 0.015625
+        }
+      ]
+    },
+    "mau_ma_size_mau": {
+      "sentiment": "neutral",
+      "evidence": [
+        {
+          "review_id": "rag_HomeLifestyle_15922336091",
+          "text": "Giao đúng sản phẩm. Chất lượng ok. Đóng gói sơ sài nên hộp bị móp méo may là ko ảnh hưởng sản phẩm.",
+          "sentiment": "neutral",
+          "rank": null,
+          "score": 0.015873015873015872
+        }
+      ]
+    }
+  }
+}

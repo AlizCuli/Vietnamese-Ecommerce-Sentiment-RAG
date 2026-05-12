@@ -1,0 +1,93 @@
+\chapter{Triển khai thử nghiệm và giao diện hệ thống}
+
+\section{Mục tiêu hiện thực hệ thống}
+Tầng triển khai thử nghiệm được xây dựng nhằm minh họa khả năng vận hành của toàn bộ pipeline NLP/RAG trên môi trường local. Giao diện không thay thế cho đánh giá định lượng trong Chương 6, nhưng giúp kiểm tra luồng xử lý thực tế: nhập review để dự đoán sentiment, nhập câu hỏi để truy xuất review liên quan, hiển thị câu trả lời có citation và trình bày thông tin kỹ thuật của corpus/index.
+
+Một nguyên tắc quan trọng trong thiết kế giao diện là tách rõ hai loại input. Review sản phẩm được gửi đến sentiment classifier. Câu hỏi RAG được gửi đến retriever và answer generator. Thiết kế này tránh hiểu nhầm rằng model sentiment đang phân tích câu hỏi như một review.
+
+\section{Backend FastAPI}
+Backend được hiện thực bằng FastAPI trong \code{backend/app.py}. FastAPI phù hợp cho thử nghiệm vì có cú pháp gọn, hỗ trợ JSON API và dễ tích hợp với frontend tĩnh \cite{fastapi}. Backend chịu trách nhiệm load model sentiment, load FAISS index/metadata, chạy retrieval và trả kết quả ở dạng JSON.
+
+\begingroup
+\small
+\begin{longtable}{L{0.22\textwidth}L{0.16\textwidth}L{0.24\textwidth}L{0.28\textwidth}}
+\caption{API backend của hệ thống thử nghiệm}\label{tab:backend-api}\\
+\toprule
+Endpoint & Phương thức & Input chính & Output chính \\
+\midrule
+\code{/api/health} & GET & Không có & Trạng thái backend, đường dẫn corpus và tổng số review nếu load được. \\
+\code{/api/config} & GET & Không có & Cấu hình model/index, category, metric và thông tin hiển thị cho tab kỹ thuật. \\
+\code{/api/sentiment} & POST & Một review sản phẩm & Nhãn sentiment dự đoán, model đang dùng và thông tin confidence/margin nếu có. \\
+\code{/api/rag} & POST & Query RAG, top-k và filter & Câu trả lời có bằng chứng, danh sách evidence, query mở rộng và thông tin debug. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Backend load model sentiment từ \code{models/module2/best_model.joblib}. Đây là artifact sentiment chính, bao gồm cả TF-IDF vectorizer và classifier. Backend load FAISS index từ \code{models/module4/review_faiss.index} và metadata từ \code{models/module4/review_metadata.parquet}. Các tài nguyên này được cache để giảm thời gian xử lý cho các request sau.
+
+\section{Frontend}
+Frontend gồm ba file chính: \code{frontend/index.html}, \code{frontend/styles.css} và \code{frontend/app.js}. File HTML định nghĩa cấu trúc tab, form và panel kết quả. File CSS định nghĩa layout, card, badge, màu sắc và responsive behavior. File JavaScript quản lý state, gọi API backend và render câu trả lời/evidence.
+
+Giao diện gồm ba tab. Tab “Phân tích Sentiment” cho phép nhập một review thật và nhận nhãn tiêu cực/trung lập/tích cực. Tab “Hỏi đáp RAG” cho phép đặt câu hỏi về review, xem cách hệ thống hiểu câu hỏi, xem câu trả lời có bằng chứng và các review được truy xuất. Tab “Kỹ thuật \& đánh giá” hiển thị số documents, embedding model, retrieval method, baseline Precision@5 và đường dẫn artifact.
+
+\section{Luồng xử lý request}
+Với request sentiment, frontend gửi review đến \code{/api/sentiment}. Backend đưa review qua pipeline \code{best_model.joblib}, gồm TF-IDF vectorizer và Linear SVM classifier. Kết quả trả về là sentiment label và thông tin phụ trợ.
+
+Với request RAG, frontend gửi query, top-k và filter đến \code{/api/rag}. Backend chuẩn hóa query, suy luận aspect/filter nếu bật chế độ tự động, mở rộng query theo rule tiếng Việt, encode query bằng E5 với prefix \code{query: }, tìm candidates trong FAISS, áp dụng filter/rerank, sau đó tạo answer dạng template-based. Answer chỉ dùng nội dung từ evidence được truy xuất, không gọi API LLM bên ngoài.
+
+\section{Ví dụ request/response}
+Ví dụ request sentiment:
+\begin{lstlisting}[language=json]
+{
+  "text": "Shop giao sai mau, nhan tin ho tro nhung khong tra loi."
+}
+\end{lstlisting}
+Nội dung ví dụ tương ứng với review: “Shop giao sai màu, nhắn tin hỗ trợ nhưng không trả lời.”
+
+Ví dụ response rút gọn:
+\begin{lstlisting}[language=json]
+{
+  "sentiment": "negative",
+  "model": "TF-IDF + Linear SVM",
+  "note": "Nhan duoc du doan tu noi dung review dau vao."
+}
+\end{lstlisting}
+
+Ví dụ request RAG:
+\begin{lstlisting}[language=json]
+{
+  "query": "Khach hang phan nan gi ve giao hang cham?",
+  "top_k": 5,
+  "sentiment": "auto",
+  "category": "all"
+}
+\end{lstlisting}
+Nội dung ví dụ tương ứng với câu hỏi: “Khách hàng phàn nàn gì về giao hàng chậm?”
+
+Ví dụ response RAG được rút gọn để minh họa cấu trúc:
+\begin{lstlisting}[language=json]
+{
+  "answer": {
+    "summary": "Trong cac review duoc truy xuat, phan nan tap trung vao giao hang cham, xu ly don thieu nhat quan va ho tro sau ban chua tot.",
+    "issues": [
+      {"text": "Giao hang cham hoac xu ly don lau.", "citations": [1, 3]},
+      {"text": "Co truong hop giao sai hoac thieu hang.", "citations": [2]}
+    ],
+    "confidence": "medium"
+  },
+  "evidence": [
+    {"citation": 1, "rating": 1, "sentiment": "negative", "comment": "..."}
+  ]
+}
+\end{lstlisting}
+
+\section{Mô tả giao diện thử nghiệm}
+Trong phạm vi báo cáo, giao diện được mô tả thông qua kiến trúc frontend/backend, luồng xử lý request và các endpoint chính. Ba tab giao diện tương ứng với ba mục tiêu kiểm thử: dự đoán sentiment cho một review, hỏi đáp RAG có bằng chứng và kiểm tra thông tin kỹ thuật của artifact. Cách trình bày này tập trung vào vai trò của giao diện trong việc xác minh pipeline thay vì phụ thuộc vào ảnh chụp màn hình.
+
+\section{Vai trò của giao diện trong kiểm thử hệ thống}
+Giao diện giúp kiểm thử tích hợp giữa các artifact và backend. Nếu tab Sentiment trả kết quả, có thể xác nhận \code{models/module2/best_model.joblib} được load đúng. Nếu tab RAG trả answer có citation, có thể xác nhận FAISS index, metadata, embedding model và answer formatter hoạt động cùng nhau. Nếu tab kỹ thuật hiển thị 82.677 documents và \code{intfloat/multilingual-e5-small}, có thể kiểm tra rằng cấu hình final của Module 4 đang được dùng.
+
+Giao diện cũng hỗ trợ kiểm tra lỗi logic. Ví dụ, khi query thay đổi nhưng chưa chạy lại, UI cần cảnh báo để tránh hiển thị answer cũ như kết quả của query mới. Khi không có evidence đủ mạnh, answer phải trả lời thận trọng. Các kiểm soát này phản ánh nguyên tắc evidence-grounded generation của đề tài.
+
+\section{Tóm tắt triển khai}
+Tầng triển khai thử nghiệm không làm thay đổi kết quả huấn luyện hoặc FAISS index. Nó đóng vai trò kết nối artifact đã có với người dùng thông qua API và UI. Vì vậy, nếu chỉ chỉnh giao diện hoặc format answer, không cần rebuild FAISS index. Nếu thay corpus, embedding model hoặc cách tạo retrieval text, cần build lại \code{review_faiss.index}, \code{review_metadata.parquet} và đánh giá lại retrieval.

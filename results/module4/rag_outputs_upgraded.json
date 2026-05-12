@@ -1,0 +1,34 @@
+{
+  "query": "Khach hang phan nan gi ve giao hang cham?",
+  "answer": "Dựa trên các review được truy xuất, hệ thống rút ra các ý chính sau:\n1. Các review có liên quan đến câu hỏi, nhưng chưa đủ dấu hiệu keyword rõ ràng để gom nhóm vấn đề chắc chắn.\n\nBằng chứng tiêu biểu:\n[1] Rating 5 - Ống Cắm Bút Pha Lê Cao Cấp Để Bàn Làm Việc Doanh Nhân Quà Tặng Cho Người Thành Đạt QDN 87 là món quà sang trọng trên bàn làm việc và là món quà tinh tế gửi trao những ý nghĩa lớn lao đến người nhận. (category=HomeLifestyle, sentiment=negative)\n\nLưu ý: Câu trả lời chỉ dựa trên các review được truy xuất, không bịa thêm ngoài dữ liệu.",
+  "issues": [],
+  "evidence": [
+    {
+      "citation": "[1]",
+      "rank": 1,
+      "score": 0.8740000286102295,
+      "dense_score": 0.8379454612731934,
+      "category": "HomeLifestyle",
+      "product_name": "Combo 2 Gối cao su non tự nhiên, Gối Bông (Phân loại) cao cấp chống ngáy hỗ trợ giảm mỏi cổ vai gáy dễ chịu ngủ ngon",
+      "rating": 5,
+      "sentiment": "negative",
+      "comment": "Ống Cắm Bút Pha Lê Cao Cấp Để Bàn Làm Việc Doanh Nhân Quà Tặng Cho Người Thành Đạt QDN 87 là món quà sang trọng trên bàn làm việc và là món quà tinh tế gửi trao những ý nghĩa lớn lao đến người nhận.",
+      "excerpt": "Ống Cắm Bút Pha Lê Cao Cấp Để Bàn Làm Việc Doanh Nhân Quà Tặng Cho Người Thành Đạt QDN 87 là món quà sang trọng trên bàn làm việc và là món quà tinh tế gửi trao những ý nghĩa lớn lao đến người nhận.",
+      "doc_id": "rag_HomeLifestyle_14298069664"
+    }
+  ],
+  "sentiment_distribution": {
+    "negative": 1
+  },
+  "category_distribution": {
+    "HomeLifestyle": 1
+  },
+  "diagnostics": {
+    "expanded_query": "Khach hang phan nan gi ve giao hang cham?",
+    "sentiment_filter": "negative",
+    "category_filter": null,
+    "exclude_app": false,
+    "candidate_k": 200,
+    "returned_rows": 1
+  }
+}

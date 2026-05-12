@@ -1,0 +1,245 @@
+\chapter{Cấu trúc thư mục và artifact}
+
+\section{Cấu trúc thư mục}
+\begingroup
+\small
+\begin{longtable}{L{0.32\textwidth}L{0.58\textwidth}}
+\caption{Cấu trúc thư mục chính của mã nguồn thực nghiệm}\label{tab:appendix-project-structure}\\
+\toprule
+Đường dẫn & Vai trò \\
+\midrule
+\filepath{backend/} & FastAPI backend cho API sentiment và RAG. \\
+\filepath{frontend/} & HTML, CSS và JavaScript cho giao diện thử nghiệm. \\
+\filepath{src/} & Mã nguồn xử lý dữ liệu, huấn luyện sentiment, retrieval/RAG và evaluation. \\
+\filepath{scripts/} & Script chạy các module và web app. \\
+\filepath{data/processed/} & Dữ liệu đã xử lý cho sentiment và RAG. \\
+\filepath{data/reports/} & Summary dữ liệu và thống kê trung gian. \\
+\filepath{data/eval/} & Query benchmark/evaluation. \\
+\filepath{models/module2/} & Artifact của mô hình sentiment. \\
+\filepath{models/module4/} & FAISS index và metadata RAG. \\
+\filepath{results/module2..6/} & Metric, evaluation và output thử nghiệm. \\
+\filepath{figures/module2..6/} & Hình minh họa dùng trong báo cáo. \\
+\filepath{docs/} & Tài liệu kỹ thuật bổ sung. \\
+\filepath{report_latex/} & Mã nguồn báo cáo LaTeX. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{Artifact quan trọng}
+\begingroup
+\small
+\begin{longtable}{L{0.24\textwidth}L{0.22\textwidth}L{0.16\textwidth}L{0.28\textwidth}}
+\caption{Artifact chính và vai trò trong hệ thống}\label{tab:appendix-artifacts}\\
+\toprule
+Thư mục & Tên file & Nhóm & Vai trò \\
+\midrule
+\filepath{models/module2} & \code{best_model.joblib} & Sentiment & Model sentiment chính dùng khi inference. \\
+\filepath{models/module2} & \code{tfidf_linearsvm.joblib} & Sentiment & Pipeline TF-IDF + Linear SVM, model tốt nhất trong baseline. \\
+\filepath{models/module2} & \code{tfidf_logreg.joblib} & Sentiment & Pipeline TF-IDF + Logistic Regression để so sánh. \\
+\filepath{models/module2} & \code{label_mapping.json} & Sentiment & Mapping nhãn negative/neutral/positive. \\
+\filepath{models/module4} & \code{review_faiss.index} & Retrieval & Vector index FAISS cho 82.677 documents final. \\
+\filepath{models/module4} & \code{review_metadata.parquet} & Retrieval & Metadata đồng bộ với từng vector trong FAISS. \\
+\filepath{models/module4} & \code{module4_index_config.json} & Retrieval & Cấu hình embedding model, dim, index type, số documents và đường dẫn artifact. \\
+\filepath{results/module2} & \code{metrics_summary.csv} & Evaluation & Metric train/valid/test của các mô hình sentiment. \\
+\filepath{results/module5} & \code{manual_precision_overall.csv} & Evaluation & Manual Precision@3/5/10 của retrieval baseline. \\
+\filepath{results/module6} & \code{last_benchmark_console_reference.txt} & Evaluation & Kết quả benchmark nhỏ của Module 6. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\chapter{Hướng dẫn tái lập thực nghiệm}
+
+\section{Môi trường}
+Hệ thống được thiết kế để chạy local bằng Python. Các yêu cầu thư viện được chia theo từng phần nhằm giảm xung đột phụ thuộc:
+\begin{itemize}
+    \item \filepath{requirements_module1_2.txt}: xử lý dữ liệu và sentiment baseline.
+    \item \filepath{requirements_module4.txt}: embedding, FAISS và retrieval/RAG.
+    \item \filepath{requirements_module6.txt}: hybrid retrieval và benchmark mở rộng.
+    \item \filepath{requirements_webapp.txt}: backend FastAPI và giao diện local.
+\end{itemize}
+
+\section{Thứ tự chạy}
+Nếu cần tái lập từ đầu, thứ tự hợp lý là:
+\begin{enumerate}
+    \item Chạy Module 1 để tạo dữ liệu processed và summary.
+    \item Chạy Module 2 để huấn luyện sentiment baseline và lưu model artifact.
+    \item Chạy Module 3 để tạo thống kê/biểu đồ dữ liệu.
+    \item Chạy Module 4 để chuẩn bị corpus, build FAISS index và đánh giá retrieval.
+    \item Chạy Module 5 để tổng hợp metric, error analysis và report sections.
+    \item Chạy Module 6 nếu cần đánh giá hướng hybrid retrieval.
+    \item Chạy backend/frontend để kiểm tra inference tích hợp.
+\end{enumerate}
+
+\section{Lệnh chạy giao diện thử nghiệm}
+\begin{lstlisting}[language=bash]
+python -m pip install -r requirements_webapp.txt
+python -m pip install -r requirements_module4.txt
+python scripts/run_rag_webapp.py
+\end{lstlisting}
+Sau đó mở \code{http://127.0.0.1:8000}. Giao diện không yêu cầu API key vì answer generator là template-based.
+
+\chapter{API backend}
+
+\begingroup
+\small
+\begin{longtable}{L{0.20\textwidth}L{0.14\textwidth}L{0.30\textwidth}L{0.26\textwidth}}
+\caption{Mô tả API backend}\label{tab:appendix-api}\\
+\toprule
+Endpoint & Method & Input & Output \\
+\midrule
+\code{/api/health} & GET & Không có & Trạng thái backend, corpus path, số review nếu load thành công. \\
+\code{/api/config} & GET & Không có & Cấu hình model/index, danh sách category, metric hiển thị. \\
+\code{/api/sentiment} & POST & \code{text}: nội dung review & Sentiment dự đoán và thông tin model. \\
+\code{/api/rag} & POST & \code{query}, \code{top_k}, filter sentiment/category/rating & Answer có citation, evidence, query expansion và thông tin debug. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\chapter{Ví dụ input/output}
+
+\section{Sentiment classification}
+Input:
+\begin{lstlisting}[language=json]
+{"text": "Shop giao sai mau, nhan tin ho tro nhung khong tra loi."}
+\end{lstlisting}
+Ví dụ trên tương ứng với review: “Shop giao sai màu, nhắn tin hỗ trợ nhưng không trả lời.”
+
+Output rút gọn:
+\begin{lstlisting}[language=json]
+{
+  "sentiment": "negative",
+  "model": "TF-IDF + Linear SVM"
+}
+\end{lstlisting}
+
+\section{RAG question answering}
+Input:
+\begin{lstlisting}[language=json]
+{
+  "query": "Khach hang phan nan gi ve giao hang cham?",
+  "top_k": 5,
+  "sentiment": "auto",
+  "category": "all"
+}
+\end{lstlisting}
+Ví dụ trên tương ứng với câu hỏi: “Khách hàng phàn nàn gì về giao hàng chậm?”
+
+Output rút gọn:
+\begin{lstlisting}[language=json]
+{
+  "summary": "Trong cac review duoc truy xuat, phan nan tap trung vao giao hang cham va ho tro sau ban chua tot.",
+  "issues": [
+    "Giao hang hoac xu ly don mat thoi gian.",
+    "Mot so review phan anh giao sai hoac thieu hang."
+  ],
+  "evidence": [
+    {"citation": 1, "rating": 1, "sentiment": "negative", "comment": "..."}
+  ]
+}
+\end{lstlisting}
+
+\chapter{Pseudocode pipeline}
+
+\section{Huấn luyện sentiment}
+\begin{keepcode}
+\begin{lstlisting}[language=Python]
+train, valid, test = load_sentiment_splits()
+for params in tfidf_and_classifier_grid:
+    model = train_pipeline(train.text, train.label, params)
+    valid_pred = model.predict(valid.text)
+    score = macro_f1(valid.label, valid_pred)
+    keep_best_model(model, score)
+test_pred = best_model.predict(test.text)
+save_model(best_model)
+save_metrics(test.label, test_pred)
+\end{lstlisting}
+\end{keepcode}
+
+\section{Retrieval/RAG}
+\begin{keepcode}
+\begin{lstlisting}[language=Python]
+query = clean_query(user_query)
+expanded_query, filters = infer_query_intent(query)
+query_embedding = e5_encode("query: " + expanded_query)
+candidate_ids = faiss_search(query_embedding, candidate_k)
+candidates = metadata.loc[candidate_ids]
+candidates = apply_filters(candidates, filters)
+evidence = rerank_and_select(candidates, top_k)
+answer = template_answer(query, evidence, citations=True)
+\end{lstlisting}
+\end{keepcode}
+
+\section{Module 6 hybrid retrieval}
+\begin{keepcode}
+\begin{lstlisting}[language=Python]
+bm25_results = bm25_search(query, top_n)
+dense_results = faiss_dense_search(query, top_n)
+fused = reciprocal_rank_fusion([bm25_results, dense_results])
+aspect = detect_aspect(query)
+fused = apply_aspect_rules(fused, aspect)
+final = rerank_or_fallback(query, fused)
+return final.head(top_k)
+\end{lstlisting}
+\end{keepcode}
+
+\chapter{Bảng metric bổ sung}
+
+\section{Metric sentiment chính}
+\begin{table}[H]
+\centering
+\caption{Tóm tắt metric sentiment chính trên tập test}
+\label{tab:appendix-sentiment-metrics}
+\begin{tabular}{lrrr}
+\toprule
+Mô hình & Accuracy & Macro-F1 & Weighted-F1 \\
+\midrule
+Majority baseline & 0,4297 & 0,2004 & 0,2583 \\
+TF-IDF + Logistic Regression & 0,9174 & 0,8940 & 0,9176 \\
+TF-IDF + Linear SVM & 0,9329 & 0,9098 & 0,9315 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Metric retrieval chính}
+\begin{table}[H]
+\centering
+\caption{Manual Precision@k của retrieval baseline}
+\label{tab:appendix-retrieval-metrics}
+\begin{tabular}{lrrr}
+\toprule
+Metric & Giá trị & Số query & Số dòng đã gán nhãn \\
+\midrule
+Precision@3 & 0,4222 & 15 & 45 \\
+Precision@5 & 0,5067 & 15 & 75 \\
+Precision@10 & 0,4867 & 15 & 150 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Cấu hình RAG index final}
+\begin{table}[H]
+\centering
+\caption[Cấu hình index RAG final]{Cấu hình index RAG final}
+\label{tab:appendix-rag-config}
+\begin{tabularx}{\textwidth}{L{0.32\textwidth}Y}
+\toprule
+Trường & Giá trị \\
+\midrule
+Số documents & 82.677 \\
+Embedding model & \filepath{intfloat/multilingual-e5-small} \\
+Embedding dim & 384 \\
+Index type & FAISS \code{IndexFlatIP} \\
+Similarity & Cosine via normalized inner product \\
+Metadata & \code{review_metadata.parquet} \\
+Index & \code{review_faiss.index} \\
+\bottomrule
+\end{tabularx}
+\par\vspace{0.25em}
+{\footnotesize Nguồn: \filepath{models/module4/module4_index_config.json}.}
+\end{table}
+
+\chapter{Ghi chú đạo đức và trách nhiệm}
+
+Hệ thống xử lý review người dùng nên cần diễn giải kết quả thận trọng. Sentiment label trong đề tài được ánh xạ từ rating nên có thể nhiễu; không nên xem dự đoán sentiment là đánh giá tuyệt đối về khách hàng hoặc nhà bán. RAG answer chỉ phản ánh các review được truy xuất ở top-k, không đại diện cho toàn bộ thị trường nếu không có phân tích thống kê bổ sung.
+
+Nếu triển khai ở môi trường thực tế, cần bổ sung cơ chế ẩn thông tin cá nhân, kiểm soát dữ liệu nhạy cảm, logging có giới hạn, versioning model/index và đánh giá human-in-the-loop. Các câu trả lời có citation giúp tăng tính minh bạch, nhưng vẫn cần người dùng kiểm tra evidence trước khi đưa ra quyết định vận hành.

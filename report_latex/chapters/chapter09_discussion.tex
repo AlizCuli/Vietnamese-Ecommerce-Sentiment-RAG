@@ -1,0 +1,21 @@
+\chapter{Thảo luận}
+\section{TF-IDF + Linear SVM so với mô hình deep learning}
+TF-IDF + Linear SVM là baseline cổ điển nhưng hiệu quả với text classification. Kết quả test macro-F1 khoảng 0,9098 cho thấy với dữ liệu vừa, text ngắn và tín hiệu từ khóa rõ, mô hình tuyến tính vẫn mạnh. Ưu điểm là huấn luyện nhanh, dễ tái lập, ít tốn tài nguyên và dễ triển khai local.
+
+So với PhoBERT hoặc XLM-R, TF-IDF + SVM không hiểu ngữ cảnh sâu, không tận dụng tốt ngữ nghĩa câu dài, phủ định phức tạp hoặc mỉa mai. Transformer có thể cải thiện nếu được fine-tune đủ tốt, nhưng cần GPU, thời gian và kiểm soát overfitting. Vì vậy trong project môn học, baseline cổ điển là lựa chọn hợp lý để có kết quả ổn định trước khi nâng cấp.
+
+\section{Vai trò của RAG trong giải thích}
+Sentiment model trả về nhãn, nhưng không tự trả lời được câu hỏi tổng hợp như “khách hàng phàn nàn gì về đóng gói”. RAG bổ sung khả năng truy xuất review liên quan và tạo insight có bằng chứng. Điều này làm hệ thống có tính giải thích hơn: không chỉ nói “tiêu cực”, mà chỉ ra review nào nói hộp móp, giao sai hoặc shop không trả lời.
+
+RAG cũng giúp người dùng kiểm chứng. Nếu câu trả lời không hợp lý, người dùng có thể xem evidence card và biết hệ thống đã dựa vào review nào. Đây là điểm quan trọng trong bài toán review analytics.
+
+\section{Sự khác nhau giữa sentiment prediction và RAG insight}
+Sentiment prediction hoạt động ở mức một review. RAG insight hoạt động ở mức tập review được truy xuất theo query. Ví dụ, review “Hàng bị móp hộp” có thể được sentiment model phân loại negative. Nhưng query “Có vấn đề gì về đóng gói không?” cần tìm nhiều review liên quan, gom nhóm vấn đề và trả lời có citation. Hai phần này bổ trợ nhau nhưng không thay thế nhau.
+
+\section{Ý nghĩa của Module 6}
+Module 6 xuất phát từ hạn chế thực tế của dense retrieval. Các complaint ngắn thường phụ thuộc keyword chính xác. Hybrid retrieval cho phép kết hợp BM25 và dense FAISS, qua đó vừa giữ lexical precision vừa giữ semantic recall. Aspect-aware rules giúp hệ thống hiểu query theo khía cạnh như giao hàng, đóng gói, chất lượng, giá hoặc dịch vụ shop.
+
+Tuy nhiên, Module 6 vẫn là MVP. Benchmark nhỏ cho thấy tín hiệu cải thiện keyword/aspect hit-rate, nhưng cần đánh giá relevance thủ công lớn hơn để kết luận chắc chắn.
+
+\section{Bài học rút ra}
+Bài học thứ nhất là dữ liệu quyết định rất nhiều đến chất lượng model. Nếu nhãn bị nhiễu hoặc duplicate không xử lý, metric sẽ thiếu tin cậy. Bài học thứ hai là retrieval cần đánh giá bằng relevance, không chỉ bằng score vector. Bài học thứ ba là giao diện phải phản ánh đúng logic hệ thống: sentiment và RAG cần tách input riêng. Bài học thứ tư là báo cáo nên trung thực về hạn chế, đặc biệt khi RAG chưa dùng LLM thật.

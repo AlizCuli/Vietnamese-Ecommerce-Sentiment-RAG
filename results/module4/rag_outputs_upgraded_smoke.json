@@ -1,0 +1,113 @@
+{
+  "query": "Khách hàng phàn nàn gì về giao hàng chậm?",
+  "answer": "# Câu trả lời\n\n## Tóm tắt\nDựa trên các review được truy xuất, khách hàng chủ yếu phàn nàn về giao hàng chậm hoặc xử lý đơn lâu, shop phản hồi hoặc hỗ trợ chưa tốt.\n\n## Các vấn đề chính\n1. Giao hàng chậm hoặc xử lý đơn lâu [1][2][3].\n2. Shop phản hồi hoặc hỗ trợ chưa tốt [2].\n\n## Bằng chứng tiêu biểu\n[1] Rating 1.0, sentiment negative: \"giao hàng quá chậm,vào ngày cuối cùng trong thời hạn.,tôi mua hàng trên lazada thường nhân được hàng vào ngày đầu tiên trong số ngày hẹn,đôi khi được nhận sớm hơn qui định.lazada cần cải thiện thời gian giao nhận hàng, tôi chỉ...\"\n[2] Rating 1.0, sentiment negative: \"đơn hàng đặt lần đã bị delay giao hàng 2 lần tình trạng đơn hàng cập nhật thông tin mang tính chất chung chung, không có giá trị với khách hàng trong kiểm tra vận trình. tổng đài gọi yêu cầu hỗ trợ rất khó khăn, luôn trong tình...\"\n[3] Rating 1.0, sentiment negative: \"giao hàng chậm 3 ngày. đóng gói chắc chắn. hàng không móp không hay hư hỏng. máy mới nguyên. không như tgD, đưa máy đã qua tay nhiều người cho mình thử và bắt phải mua cái đó. máy trầy mình không lấy, lên mạng đặt cái m21 này l...\"\n\n## Độ tin cậy\n- Evidence liên quan: Cao\n- Số review được dùng: 5\n- Lưu ý: Câu trả lời chỉ dựa trên review truy xuất, không suy diễn ngoài dữ liệu.",
+  "summary": "Dựa trên các review được truy xuất, khách hàng chủ yếu phàn nàn về giao hàng chậm hoặc xử lý đơn lâu, shop phản hồi hoặc hỗ trợ chưa tốt.",
+  "main_issues": [
+    {
+      "issue": "Giao hàng chậm hoặc xử lý đơn lâu",
+      "count": 5,
+      "citations": [
+        "[1]",
+        "[2]",
+        "[3]"
+      ]
+    },
+    {
+      "issue": "Shop phản hồi hoặc hỗ trợ chưa tốt",
+      "count": 1,
+      "citations": [
+        "[2]"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "citation": "[1]",
+      "rank": 1,
+      "score": 0.8537500286102294,
+      "dense_score": 0.8593732714653015,
+      "category": "Mobile",
+      "product_name": "ViOCD domain: mobile",
+      "rating": 1.0,
+      "sentiment": "negative",
+      "comment": "giao hàng quá chậm,vào ngày cuối cùng trong thời hạn.,tôi mua hàng trên lazada thường nhân được hàng vào ngày đầu tiên trong số ngày hẹn,đôi khi được nhận sớm hơn qui định.lazada cần cải thiện thời gian giao nhận hàng, tôi chỉ đồng ý tặng 4star thôi.",
+      "excerpt": "giao hàng quá chậm,vào ngày cuối cùng trong thời hạn.,tôi mua hàng trên lazada thường nhân được hàng vào ngày đầu tiên trong số ngày hẹn,đôi khi được nhận sớm hơn qui định.lazada cần cải thiện thời gian giao nhận hàng, tôi chỉ...",
+      "doc_id": "viocd_00000465"
+    },
+    {
+      "citation": "[2]",
+      "rank": 2,
+      "score": 0.823972065448761,
+      "dense_score": 0.858024537563324,
+      "category": "App",
+      "product_name": "ViOCD domain: app",
+      "rating": 1.0,
+      "sentiment": "negative",
+      "comment": "đơn hàng đặt lần đã bị delay giao hàng 2 lần tình trạng đơn hàng cập nhật thông tin mang tính chất chung chung, không có giá trị với khách hàng trong kiểm tra vận trình. tổng đài gọi yêu cầu hỗ trợ rất khó khăn, luôn trong tình trạng fuL. với tiêu chuẩn của một trang thương mại điện tử thì chất lượng... bài đánh giá đầy đủ",
+      "excerpt": "đơn hàng đặt lần đã bị delay giao hàng 2 lần tình trạng đơn hàng cập nhật thông tin mang tính chất chung chung, không có giá trị với khách hàng trong kiểm tra vận trình. tổng đài gọi yêu cầu hỗ trợ rất khó khăn, luôn trong tình...",
+      "doc_id": "viocd_00002218"
+    },
+    {
+      "citation": "[3]",
+      "rank": 3,
+      "score": 0.8132883906364441,
+      "dense_score": 0.8573035001754761,
+      "category": "Mobile",
+      "product_name": "ViOCD domain: mobile",
+      "rating": 1.0,
+      "sentiment": "negative",
+      "comment": "giao hàng chậm 3 ngày. đóng gói chắc chắn. hàng không móp không hay hư hỏng. máy mới nguyên. không như tgD, đưa máy đã qua tay nhiều người cho mình thử và bắt phải mua cái đó. máy trầy mình không lấy, lên mạng đặt cái m21 này luôn. trước mắt thấy rất hài lòng.",
+      "excerpt": "giao hàng chậm 3 ngày. đóng gói chắc chắn. hàng không móp không hay hư hỏng. máy mới nguyên. không như tgD, đưa máy đã qua tay nhiều người cho mình thử và bắt phải mua cái đó. máy trầy mình không lấy, lên mạng đặt cái m21 này l...",
+      "doc_id": "viocd_00002178"
+    },
+    {
+      "citation": "[4]",
+      "rank": 4,
+      "score": 0.7753324699401856,
+      "dense_score": 0.8564255833625793,
+      "category": "App",
+      "product_name": "ViOCD domain: app",
+      "rating": 1.0,
+      "sentiment": "negative",
+      "comment": "đặt hàng đến ngày dự kiến giao hàng thì nhận được thông báo sẽ giao chậm 4 ngày. đợi 4 ngày xong lại có thông báo không còn sản phẩm trong kho. vậy tại sao không thông báo hết sản phẩm từ lúc đặt hàng đi để tôi khỏi mất thời gian hơn một tuần liền. thật thất vọng với cách làm việc của các bạn. đây là lần cu... bài đánh giá đầy đủ",
+      "excerpt": "đặt hàng đến ngày dự kiến giao hàng thì nhận được thông báo sẽ giao chậm 4 ngày. đợi 4 ngày xong lại có thông báo không còn sản phẩm trong kho. vậy tại sao không thông báo hết sản phẩm từ lúc đặt hàng đi để tôi khỏi mất thời gi...",
+      "doc_id": "viocd_00005181"
+    },
+    {
+      "citation": "[5]",
+      "rank": 5,
+      "score": 0.7625830578804016,
+      "dense_score": 0.855266809463501,
+      "category": "App",
+      "product_name": "ViOCD domain: app",
+      "rating": 1.0,
+      "sentiment": "negative",
+      "comment": "giao hàng chậm trễ mà không thông báo với khách hàng, có đơn tôi thanh toán trước qua thẻ nhưng mãi không thấy giao, kiểm tra đơn hàng thì đã giao thành công trong khi tôi không hề nhận được hàng. gửi yêu cầu bảo hành thì hứa sẽ cho nhân viên xuống thu hồi, đợi gần 2 tuần qua rất nhiều email xin lỗi... bài đánh giá đầy đủ",
+      "excerpt": "giao hàng chậm trễ mà không thông báo với khách hàng, có đơn tôi thanh toán trước qua thẻ nhưng mãi không thấy giao, kiểm tra đơn hàng thì đã giao thành công trong khi tôi không hề nhận được hàng. gửi yêu cầu bảo hành thì hứa s...",
+      "doc_id": "viocd_00001872"
+    }
+  ],
+  "confidence": {
+    "level": "high",
+    "label": "Cao",
+    "evidence_count": 5,
+    "issue_hits": 6,
+    "average_score": 0.8572787046432495,
+    "warning": ""
+  },
+  "sentiment_distribution": {
+    "negative": 5
+  },
+  "category_distribution": {
+    "App": 3,
+    "Mobile": 2
+  },
+  "diagnostics": {
+    "expanded_query": "Khách hàng phàn nàn gì về giao hàng chậm? ship vận chuyển nhận hàng đóng hàng gửi hàng lâu trễ delay mãi chưa nhận quá lâu",
+    "sentiment_filter": "negative",
+    "category_filter": null,
+    "exclude_app": false,
+    "candidate_k": 300,
+    "returned_rows": 5
+  }
+}

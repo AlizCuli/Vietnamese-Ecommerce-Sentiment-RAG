@@ -1,0 +1,35 @@
+\chapter{Mở đầu}
+\section{Bối cảnh thương mại điện tử và dữ liệu review}
+Thương mại điện tử tạo ra một lượng lớn dữ liệu đánh giá sản phẩm mỗi ngày. Mỗi review có thể chứa thông tin về chất lượng sản phẩm, tốc độ giao hàng, đóng gói, phản hồi của shop, sai mẫu, thiếu hàng, kích thước, giá cả hoặc trải nghiệm sau bán. Với người mua, review giúp ra quyết định mua hàng. Với người bán, review là nguồn tín hiệu để phát hiện vấn đề vận hành. Với nền tảng TMĐT, review là dữ liệu quan trọng để đánh giá chất lượng nhà bán, sản phẩm và dịch vụ logistics.
+
+Tuy nhiên, khi số lượng review lớn, việc đọc thủ công trở nên không khả thi. Một sản phẩm hoặc một ngành hàng có thể có hàng nghìn review. Người quản lý không chỉ muốn biết review là tích cực hay tiêu cực, mà còn muốn hỏi các câu như: khách hàng phàn nàn gì về giao hàng chậm, review nào nói shop giao thiếu hàng, hay vấn đề chất lượng sản phẩm xuất hiện ở đâu. Những câu hỏi này đòi hỏi hệ thống vừa biết phân tích cảm xúc vừa biết truy xuất bằng chứng cụ thể.
+
+Trong bối cảnh đó, NLP giúp tự động hóa việc hiểu văn bản review, còn retrieval và RAG giúp tìm đúng các review làm bằng chứng. Điểm quan trọng của đề tài không phải chỉ là tạo một câu trả lời nghe có vẻ đúng, mà là tạo câu trả lời có thể kiểm chứng bằng review thật. Vì vậy hệ thống đặt trọng tâm vào evidence, citation và các metric thực nghiệm.
+
+\section{Vấn đề cần giải quyết}
+Đề tài tập trung vào hai vấn đề. Vấn đề thứ nhất là phân loại cảm xúc review tiếng Việt thành ba lớp: negative, neutral và positive. Đây là bài toán text classification điển hình trong NLP. Input là nội dung review; output là nhãn sentiment. Vấn đề thứ hai là hỏi đáp dựa trên review: khi người dùng đặt câu hỏi, hệ thống cần tìm các review liên quan và tạo câu trả lời có trích dẫn. Đây là hướng Retrieval-Augmented Generation, nhưng trong phạm vi đề tài này phần generation được thiết kế theo template và chỉ dựa trên evidence, không gọi API LLM bên ngoài.
+
+Cách tiếp cận này phù hợp với yêu cầu học thuật vì kết quả có thể kiểm chứng. Nếu hệ thống nói khách hàng phàn nàn về giao hàng, báo cáo phải chỉ ra review nào là bằng chứng. Điều này khác với việc chỉ sinh câu trả lời tự do mà không có nguồn.
+
+\section{Lý do chọn đề tài}
+Đề tài được chọn vì kết hợp được nhiều kiến thức cốt lõi của môn NLP: tiền xử lý văn bản, biểu diễn văn bản, phân loại văn bản, đánh giá mô hình, embedding, retrieval, RAG và thiết kế giao diện thử nghiệm. Bên cạnh đó, dữ liệu review TMĐT gần gũi với thực tế và có tính ứng dụng cao. Hệ thống có thể hỗ trợ người bán tổng hợp phản hồi khách hàng, giúp người mua tìm hiểu vấn đề thường gặp, hoặc giúp nhóm vận hành phát hiện lỗi dịch vụ.
+
+\section{Mục tiêu nghiên cứu}
+Các mục tiêu chính của đề tài gồm:
+\begin{itemize}
+    \item Xây dựng pipeline dữ liệu cho review tiếng Việt, gồm làm sạch, xử lý duplicate, ánh xạ rating sang sentiment và chia train/valid/test.
+    \item Huấn luyện và đánh giá các mô hình sentiment classification baseline, gồm majority baseline, TF-IDF + Logistic Regression và TF-IDF + Linear SVM.
+    \item Xây dựng RAG corpus, embedding review bằng multilingual-E5, lưu FAISS index và metadata phục vụ retrieval.
+    \item Tạo câu trả lời RAG có cấu trúc gồm tóm tắt, vấn đề chính, bằng chứng và độ tin cậy.
+    \item Xây dựng giao diện thử nghiệm có ba tab: phân tích sentiment, hỏi đáp RAG và kỹ thuật/đánh giá.
+    \item Bổ sung Module 6 như hướng nâng cấp retrieval bằng BM25, Dense FAISS, RRF fusion và aspect-aware reranking.
+\end{itemize}
+
+\section{Đối tượng và phạm vi nghiên cứu}
+Đối tượng nghiên cứu là review sản phẩm TMĐT tiếng Việt. Phạm vi của đề tài là phân loại sentiment ở mức review và truy xuất bằng chứng review theo câu hỏi. Hệ thống không xây dựng chatbot LLM hoàn chỉnh, không huấn luyện mô hình ngôn ngữ lớn, và không khẳng định đã đạt mức production. Các kết quả retrieval được đánh giá ở mức baseline/manual evaluation, còn Module 6 là benchmark nhỏ mang tính chẩn đoán.
+
+\section{Đóng góp chính}
+Đóng góp của đề tài nằm ở tính end-to-end của pipeline. Module 2 tạo mô hình sentiment để phân loại review. Module 4 tạo tầng RAG có citation, giúp câu trả lời luôn gắn với review được truy xuất. Module 6 chỉ ra hướng cải thiện retrieval khi dense retrieval bỏ sót các cụm complaint ngắn. Tầng giao diện thử nghiệm minh họa cách vận hành của hệ thống qua ba thành phần tách biệt: dự đoán cảm xúc một review, hỏi đáp dựa trên nhiều review và hiển thị thông tin kỹ thuật/đánh giá.
+
+\section{Cấu trúc báo cáo}
+Báo cáo gồm mười một chương. Chương 1 trình bày bối cảnh và mục tiêu. Chương 2 trình bày cơ sở lý thuyết. Chương 3 mô tả yêu cầu và thiết kế hệ thống. Chương 4 trình bày dữ liệu và tiền xử lý. Chương 5 mô tả phương pháp theo từng module. Chương 6 trình bày thực nghiệm và kết quả. Chương 7 phân tích lỗi. Chương 8 mô tả triển khai thử nghiệm và giao diện hệ thống. Chương 9 thảo luận. Chương 10 nêu hạn chế và hướng phát triển. Chương 11 kết luận. Phụ lục trình bày cấu trúc thư mục, artifact, API, ví dụ input/output, pseudocode và bảng metric bổ sung.
