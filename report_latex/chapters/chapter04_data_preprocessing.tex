@@ -52,7 +52,7 @@ Nguồn & Min & Median & Mean & Max \\
 \section{Dữ liệu RAG}
 Dữ liệu RAG được chuẩn hóa thành corpus phục vụ truy xuất. Theo cấu hình index final của Module 4, bản final của RAG index có 82.677 documents. Đây là con số cần ưu tiên khi trình bày bản final, vì nó phản ánh artifact đang dùng trong demo cuối.
 
-Trong summary dữ liệu cũ vẫn có số 45.259 documents. Đây là summary của một giai đoạn build cũ hoặc bản corpus trước khi mở rộng. Báo cáo này sử dụng con số 82.677 cho bản final, đồng thời ghi rõ sự khác biệt nếu cần đối chiếu.
+Các summary chính của Module 4 đã được đồng bộ theo artifact final, gồm \code{review_metadata.parquet}, \code{review_faiss.index} và \code{module4_index_config.json}. Do đó, khi trình bày bản cuối, số liệu cần dùng là 82.677 documents.
 \begin{table}[H]
 \centering
 \caption{Cấu hình RAG index bản final}
@@ -107,5 +107,4 @@ Duplicate làm mô hình đánh giá sai khả năng tổng quát. Nếu một r
 
 \safeimage{figures/module3/sentiment_3class_distribution.png}{Phân phối sentiment 3 lớp trong dữ liệu sau xử lý.}{fig:sentiment-3class}{0.78\textwidth}
 \safeimage{figures/module3/sentiment_5class_distribution.png}{Phân phối rating 5 lớp trong dữ liệu sentiment.}{fig:sentiment-5class}{0.78\textwidth}
-
 
