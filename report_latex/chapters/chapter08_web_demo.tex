@@ -82,7 +82,69 @@ Ví dụ response RAG được rút gọn để minh họa cấu trúc:
 \end{lstlisting}
 
 \section{Mô tả giao diện thử nghiệm}
-Trong phạm vi báo cáo, giao diện được mô tả thông qua kiến trúc frontend/backend, luồng xử lý request và các endpoint chính. Ba tab giao diện tương ứng với ba mục tiêu kiểm thử: dự đoán sentiment cho một review, hỏi đáp RAG có bằng chứng và kiểm tra thông tin kỹ thuật của artifact. Cách trình bày này tập trung vào vai trò của giao diện trong việc xác minh pipeline thay vì phụ thuộc vào ảnh chụp màn hình.
+Trong phạm vi báo cáo, giao diện được dùng như một lớp minh họa trực quan cho pipeline đã xây dựng. Ba tab giao diện tương ứng với ba mục tiêu kiểm thử: dự đoán sentiment cho một review, hỏi đáp RAG có bằng chứng và kiểm tra thông tin kỹ thuật của artifact. Các hình trong mục này không thay thế cho đánh giá định lượng ở Chương 6, mà bổ sung bằng chứng trực quan rằng các artifact của mô hình, retrieval và backend đã được kết nối thành một hệ thống thử nghiệm thống nhất.
+
+\begingroup
+\small
+\begin{longtable}{L{0.22\textwidth}L{0.24\textwidth}L{0.25\textwidth}L{0.21\textwidth}}
+\caption{Vai trò kiểm chứng của các tab trong giao diện thử nghiệm}\label{tab:web-demo-tabs}\\
+\toprule
+Tab & Input chính & Output hiển thị & Vai trò kiểm chứng \\
+\midrule
+Phân tích Sentiment & Một review sản phẩm tiếng Việt & Nhãn sentiment dự đoán, model đang dùng và confidence/margin & Kiểm tra khả năng load và inference của mô hình sentiment. \\
+Hỏi đáp RAG & Câu hỏi về review, top-k và filter nếu có & Câu trả lời có citation, vấn đề chính và evidence cards & Kiểm tra luồng retrieval, reranking, template answer và citation. \\
+Kỹ thuật \& đánh giá & Không bắt buộc & Số documents, embedding model, retrieval method, Precision@5 và đường dẫn artifact & Kiểm tra cấu hình final và metric chính của hệ thống. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{Minh họa demo web}
+Hình \ref{fig:web-sentiment-demo} minh họa tab Phân tích Sentiment. Người dùng nhập một review sản phẩm thật; hệ thống trả nhãn cảm xúc dự đoán là tiêu cực, đồng thời hiển thị artifact model đang dùng và confidence/margin. Ví dụ này xác nhận tab Sentiment chỉ nhận review làm input, không dùng để phân tích câu hỏi RAG.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures_generated/web_sentiment_demo.jpg}
+    \caption{Giao diện tab Phân tích Sentiment với ví dụ review tiêu cực.}
+    \label{fig:web-sentiment-demo}
+\end{figure}
+
+Hình \ref{fig:web-rag-query-demo} thể hiện tab Hỏi đáp RAG ở bước nhập câu hỏi. Giao diện hiển thị các gợi ý truy vấn như giao hàng chậm, sai hàng, thiếu hàng, đóng gói lỗi hoặc chất lượng kém. Các gợi ý này giúp kiểm thử những nhóm complaint thường gặp trong review thương mại điện tử.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures_generated/web_rag_query_demo.jpg}
+    \caption{Giao diện tab Hỏi đáp RAG ở bước nhập câu hỏi về review khách hàng.}
+    \label{fig:web-rag-query-demo}
+\end{figure}
+
+\clearpage
+
+Hình \ref{fig:web-rag-answer-demo} minh họa kết quả RAG sau khi thực thi truy vấn. Câu trả lời được trình bày theo hướng \EvidenceGrounded{}, gồm tóm tắt, các vấn đề chính, citation và danh sách evidence tiêu biểu. Cách trình bày này giúp người dùng không chỉ đọc kết luận tổng hợp mà còn kiểm tra được các review làm bằng chứng.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures_generated/web_rag_answer_demo.jpg}
+    \caption{Kết quả RAG gồm tóm tắt, vấn đề chính, citation và top evidence.}
+    \label{fig:web-rag-answer-demo}
+\end{figure}
+
+Hình \ref{fig:web-rag-evidence-demo} minh họa vùng review được truy xuất. Mỗi evidence card hiển thị citation id, điểm liên quan, ngành hàng, số sao, sentiment và đoạn review. Các từ khóa liên quan trong review được nhấn mạnh, giúp kiểm tra trực quan vì sao một review được xem là liên quan đến câu hỏi.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures_generated/web_rag_evidence_demo.jpg}
+    \caption{Danh sách review được truy xuất trong tab RAG và các evidence cards.}
+    \label{fig:web-rag-evidence-demo}
+\end{figure}
+
+Hình \ref{fig:web-technical-demo} minh họa tab Kỹ thuật \& đánh giá. Tab này tổng hợp các thông tin quan trọng của bản final như số documents trong kho review, embedding model, retrieval method và baseline Precision@5. Nhờ đó, người đọc có thể đối chiếu nhanh giữa giao diện demo và số liệu đã trình bày trong các chương dữ liệu, phương pháp và thực nghiệm.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures_generated/web_technical_demo.jpg}
+    \caption{Tab Kỹ thuật \& đánh giá hiển thị cấu hình hệ thống và metric chính.}
+    \label{fig:web-technical-demo}
+\end{figure}
 
 \section{Vai trò của giao diện trong kiểm thử hệ thống}
 Giao diện giúp kiểm thử tích hợp giữa các artifact và backend. Nếu tab Sentiment trả kết quả, có thể xác nhận artifact sentiment được load đúng. Nếu tab RAG trả answer có citation, có thể xác nhận FAISS index, metadata, embedding model và answer formatter hoạt động cùng nhau. Nếu tab kỹ thuật hiển thị 82.677 documents và embedding model multilingual-E5-small, có thể kiểm tra rằng cấu hình final của Module 4 đang được dùng.
