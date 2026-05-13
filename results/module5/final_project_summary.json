@@ -12,5 +12,11 @@
   "module4_rag_query": "Khách hàng phàn nàn gì về giao sai hàng, giao chậm hoặc đóng gói bị móp?",
   "module4_strong_negative_count": 5,
   "module4_noise_filtered_count": 0,
-  "missing_optional_files": []
+  "missing_optional_files": [],
+  "module4_final_documents": 82677,
+  "module4_embedding_model": "intfloat/multilingual-e5-small",
+  "module4_embedding_dim": 384,
+  "module4_index_type": "IndexFlatIP",
+  "module4_index_path": "models/module4/review_faiss.index",
+  "module4_metadata_path": "models/module4/review_metadata.parquet"
 }

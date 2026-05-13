@@ -16,6 +16,8 @@
   "negative_count": 2074,
   "positive_count": 2217,
   "neutral_count": 871,
-  "source_file": "C:\\Users\\hi\\rag_final_workspace\\ecommerce-sentiment-rag\\data\\processed\\sentiment_reviews.csv",
-  "generated_from_module3_zip": true
+  "source_file": "data/processed/sentiment_reviews.csv",
+  "generated_from_module3_zip": true,
+  "summary_scope": "sentiment_analytics_dataset",
+  "note": "This file summarizes the 5,162-review sentiment analytics dataset, not the 82,677-document RAG corpus."
 }
