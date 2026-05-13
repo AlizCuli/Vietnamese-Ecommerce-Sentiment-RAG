@@ -8,7 +8,6 @@
 - Đảm bảo các cụm lỗi như `TF￾IDF`, `macro￾F1`, `evidence￾grounded`, `multilingual￾E5`, `rating￾sentiment`, `human-in￾the-loop` không còn xuất hiện.
 - Đặt tên danh mục trong LaTeX là `Danh mục hình` và `Danh mục bảng`.
 - Rút gọn bảng artifact chính ở Chương 5, chỉ hiển thị tên file ngắn trong bảng chính để tránh path dài bị ngắt dòng xấu.
-- Rút gọn các bảng chính ở Chương 3, Chương 4 và phụ lục: thay path dài bằng tên file ngắn hoặc tách thư mục và tên file thành cột riêng.
 - Tách dòng nguồn dưới Bảng 4.8 thành một dòng riêng: `Nguồn: models/module4/review_metadata.parquet`.
 - Kiểm tra source không còn placeholder nội dung kiểu `nếu có ảnh`, `báo cáo sẽ tự động chèn`, `macro safeimage`, hoặc lỗi encoding tiếng Việt trong code block theo các mẫu đã phát hiện.
 - Kiểm tra các ảnh chính được tham chiếu trong báo cáo đều tồn tại trong thư mục project.

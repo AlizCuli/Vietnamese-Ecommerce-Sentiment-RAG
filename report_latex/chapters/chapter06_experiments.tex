@@ -1,16 +1,16 @@
 \chapter{Thực nghiệm và kết quả}
 \section{Thiết lập thực nghiệm}
-Thực nghiệm sentiment sử dụng dữ liệu 5.162 review sau dedup. Dữ liệu được chia train/valid/test với phân phối lớp như Chương 4. Các mô hình so sánh gồm majority baseline, TF-IDF + Logistic Regression và TF-IDF + Linear SVM. Tiêu chí chọn model là validation macro-F1, vì macro-F1 đánh giá đều các lớp và phù hợp khi lớp neutral ít hơn.
+Thực nghiệm sentiment sử dụng dữ liệu 5.162 review sau dedup. Dữ liệu được chia train/valid/test với phân phối lớp như Chương 4. Các mô hình so sánh gồm majority baseline, \TFIDF{} + Logistic Regression và \TFIDF{} + Linear SVM. Tiêu chí chọn model là validation \MacroFOne{}, vì \MacroFOne{} đánh giá đều các lớp và phù hợp khi lớp neutral ít hơn.
 
 Thực nghiệm retrieval/RAG dùng 15 query đánh giá trong Module 4. Kết quả retrieval được đo bằng score trung bình tự động và manual Precision@k. Score embedding không đủ để kết luận relevance, vì vậy Precision@k thủ công là số liệu quan trọng hơn. Module 6 dùng benchmark nhỏ với keyword hit-rate và aspect hit-rate để so sánh BM25, dense, hybrid và hybrid + reranker.
 
 \section{Kết quả sentiment classification}
-\begin{table}[H]\centering\caption{So sánh mô hình sentiment trên tập test}\label{tab:sentiment-model-comparison}\begin{tabular}{lrrr}\toprule Mô hình & Accuracy & Macro-F1 & Weighted-F1 \\\midrule Majority baseline & 0,4297 & 0,2004 & 0,2583 \\ TF-IDF + Logistic Regression & 0,9174 & 0,8940 & 0,9176 \\ TF-IDF + Linear SVM & \textbf{0,9329} & \textbf{0,9098} & \textbf{0,9315} \\\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\caption{So sánh mô hình sentiment trên tập test}\label{tab:sentiment-model-comparison}\begin{tabular}{lrrr}\toprule Mô hình & Accuracy & Macro-F1 & Weighted-F1 \\\midrule Majority baseline & 0,4297 & 0,2004 & 0,2583 \\ \TFIDF{} + Logistic Regression & 0,9174 & 0,8940 & 0,9176 \\ \TFIDF{} + Linear SVM & \textbf{0,9329} & \textbf{0,9098} & \textbf{0,9315} \\\bottomrule\end{tabular}\end{table}
 
-Bảng \ref{tab:sentiment-model-comparison} cho thấy hai mô hình TF-IDF đều vượt xa majority baseline. Linear SVM là mô hình tốt nhất trong các baseline đã thử. So với majority baseline, Linear SVM tăng test accuracy từ 0,4297 lên 0,9329 và macro-F1 từ 0,2004 lên 0,9098. Điều này chứng minh mô hình thật sự học được tín hiệu từ văn bản, không chỉ dựa vào lớp nhiều nhất.
+Bảng \ref{tab:sentiment-model-comparison} cho thấy hai mô hình \TFIDF{} đều vượt xa majority baseline. Linear SVM là mô hình tốt nhất trong các baseline đã thử. So với majority baseline, Linear SVM tăng test accuracy từ 0,4297 lên 0,9329 và \MacroFOne{} từ 0,2004 lên 0,9098. Điều này chứng minh mô hình thật sự học được tín hiệu từ văn bản, không chỉ dựa vào lớp nhiều nhất.
 
-\safeimage{../figures/module2/model_comparison_accuracy.png}{So sánh accuracy giữa các mô hình sentiment.}{fig:model-accuracy}{0.82\textwidth}
-\safeimage{../figures/module2/model_comparison_macro_f1.png}{So sánh macro-F1 giữa các mô hình sentiment.}{fig:model-macro-f1}{0.82\textwidth}
+\safeimage{figures/module2/model_comparison_accuracy.png}{So sánh accuracy giữa các mô hình sentiment.}{fig:model-accuracy}{0.82\textwidth}
+\safeimage{figures/module2/model_comparison_macro_f1.png}{So sánh \MacroFOne{} giữa các mô hình sentiment.}{fig:model-macro-f1}{0.82\textwidth}
 
 \section{Per-class F1 của Linear SVM}
 \begin{table}[H]\centering\caption{Per-class metric của Linear SVM trên tập test}\label{tab:linear-svm-per-class}\begin{tabular}{lrrrr}\toprule Lớp & Precision & Recall & F1-score & Support \\\midrule Negative & 0,9102 & 0,9775 & 0,9426 & 311 \\ Neutral & 0,8929 & 0,7634 & 0,8230 & 131 \\ Positive & 0,9696 & 0,9580 & 0,9637 & 333 \\ Macro avg & 0,9242 & 0,8996 & 0,9098 & 775 \\ Weighted avg & 0,9328 & 0,9329 & 0,9315 & 775 \\\bottomrule\end{tabular}\end{table}
@@ -35,34 +35,34 @@ Positive & 7 & 7 & \textbf{319} \\
 \end{table}
 Từ Bảng \ref{tab:linear-svm-confusion-counts}, negative đúng 304/311 và positive đúng 319/333. Neutral đúng 100/131, trong đó 23 review neutral bị nhầm thành negative. Đây là bằng chứng định lượng cho nhận xét rằng neutral là lớp khó nhất.
 
-\safeimage{../figures/module2/linear_svm_confusion_matrix.png}{Confusion matrix của Linear SVM.}{fig:svm-confusion}{0.72\textwidth}
-\safeimage{../figures/module2/logistic_regression_confusion_matrix.png}{Confusion matrix của Logistic Regression.}{fig:logreg-confusion}{0.72\textwidth}
+\safeimage{figures/module2/linear_svm_confusion_matrix.png}{Confusion matrix của Linear SVM.}{fig:svm-confusion}{0.72\textwidth}
+\safeimage{figures/module2/logistic_regression_confusion_matrix.png}{Confusion matrix của Logistic Regression.}{fig:logreg-confusion}{0.72\textwidth}
 
 \section{Kết quả retrieval/RAG Module 4}
-Manual Precision@k của retrieval baseline được tổng hợp trong \code{results/module5/manual_precision_overall.csv}. Kết quả gồm 15 query đánh giá.
+Manual Precision@k của retrieval baseline được tổng hợp từ kết quả đánh giá thủ công của Module 5. Kết quả gồm 15 query đánh giá.
 \begin{table}[H]\centering\caption{Manual Precision@k của retrieval baseline}\label{tab:manual-precision}\begin{tabular}{lrrr}\toprule Metric & Giá trị & Số query & Số dòng đã chấm \\\midrule Precision@3 & 0,4222 & 15 & 45 \\ Precision@5 & 0,5067 & 15 & 75 \\ Precision@10 & 0,4867 & 15 & 150 \\\bottomrule\end{tabular}\end{table}
 
 Precision@5 khoảng 0,5067 nghĩa là trung bình trong 5 review đầu được trả về, khoảng một nửa được chấm là liên quan. Đây là mức baseline, chưa phải retrieval hoàn hảo. Precision@5 cao hơn Precision@3 trong bộ đánh giá hiện có có thể do một số query có evidence liên quan xuất hiện ở rank 4--5; với tập query nhỏ, biến động này là bình thường.
 
-\safeimage{../figures/module4/retrieval_eval_summary.png}{Tổng hợp đánh giá retrieval Module 4.}{fig:retrieval-summary}{0.82\textwidth}
-\safeimage{../figures/module5/manual_precision_at_k.png}{Manual Precision@k của retrieval baseline.}{fig:manual-pk}{0.78\textwidth}
+\safeimage{figures/module4/retrieval_eval_summary.png}{Tổng hợp đánh giá retrieval Module 4.}{fig:retrieval-summary}{0.82\textwidth}
+\safeimage{figures/module5/manual_precision_at_k.png}{Manual Precision@k của retrieval baseline.}{fig:manual-pk}{0.78\textwidth}
 
 \section{Score retrieval tự động}
-Theo \code{results/module4/retrieval_eval_summary.csv}, average retrieval score trung bình xấp xỉ 0,8420 với k=3, 0,8404 với k=5 và 0,8381 với k=10. Score giảm nhẹ khi k tăng là hợp lý vì các kết quả sau thường ít gần query hơn. Tuy nhiên, score embedding không phải nhãn relevance. Một review có score cao vẫn có thể không trả lời đúng intent nếu query mơ hồ hoặc review cùng chủ đề nhưng khác polarity.
+Theo summary retrieval của Module 4, average retrieval score trung bình xấp xỉ 0,8420 với k=3, 0,8404 với k=5 và 0,8381 với k=10. Score giảm nhẹ khi k tăng là hợp lý vì các kết quả sau thường ít gần query hơn. Tuy nhiên, score embedding không phải nhãn relevance. Một review có score cao vẫn có thể không trả lời đúng intent nếu query mơ hồ hoặc review cùng chủ đề nhưng khác polarity.
 \begin{table}[H]\centering\caption{Average retrieval score theo k}\label{tab:retrieval-score}\begin{tabular}{lr}\toprule k & Average score xấp xỉ \\\midrule 3 & 0,8420 \\ 5 & 0,8404 \\ 10 & 0,8381 \\\bottomrule\end{tabular}\end{table}
 
 \section{Kết quả Module 6}
-Module 6 được đánh giá bằng benchmark nhỏ trong \code{reports/module6_retrieval_eval_reference_from_hybrid_project.csv} và hình \code{figures/module6/module6_retrieval_comparison_reference.png}. Benchmark này kiểm tra keyword hit-rate và aspect hit-rate, không thay thế đánh giá relevance thủ công lớn.
+Module 6 được đánh giá bằng benchmark nhỏ kiểm tra keyword hit-rate và aspect hit-rate. Benchmark này không thay thế đánh giá relevance thủ công lớn.
 \begin{table}[H]\centering\caption{So sánh Module 6 trên benchmark nhỏ}\label{tab:module6-comparison}\begin{tabular}{lrrrr}\toprule Method & keyword\_hit@5 & keyword\_hit@10 & aspect\_hit@5 & aspect\_hit@10 \\\midrule BM25 & 0,500 & 0,667 & 1,000 & 1,000 \\ Dense & 0,500 & 0,833 & 1,000 & 1,000 \\ Hybrid & 1,000 & 1,000 & 1,000 & 1,000 \\ Hybrid + reranker & 1,000 & 1,000 & 1,000 & 1,000 \\\bottomrule\end{tabular}\end{table}
 
 Kết quả cho thấy hybrid retrieval cải thiện khả năng bắt keyword trong benchmark nhỏ. Điều này phù hợp với giả thuyết: BM25 mạnh ở exact keyword, dense mạnh ở semantic similarity, còn hybrid kết hợp hai ưu điểm. Tuy nhiên, do benchmark nhỏ và handcrafted, kết quả này chỉ nên xem là tín hiệu kỹ thuật ban đầu.
-\safeimage{../figures/module6/module6_retrieval_comparison_reference.png}{So sánh BM25, Dense, Hybrid và Hybrid + reranker trong Module 6.}{fig:module6-comparison}{0.82\textwidth}
+\safeimage{figures/module6/module6_retrieval_comparison_reference.png}{So sánh BM25, Dense, Hybrid và Hybrid + reranker trong Module 6.}{fig:module6-comparison}{0.82\textwidth}
 
 \section{Nhận xét tổng hợp}
-Sentiment classification là phần đạt kết quả mạnh nhất, với Linear SVM macro-F1 khoảng 0,9098. Retrieval/RAG đã hoạt động end-to-end và có citation, nhưng Precision@5 còn ở mức baseline khoảng 0,5067. Module 6 chỉ ra hướng cải thiện retrieval theo aspect, nhưng cần đánh giá lớn hơn trước khi khẳng định hiệu quả tổng quát.
+Sentiment classification là phần đạt kết quả mạnh nhất, với Linear SVM \MacroFOne{} khoảng 0,9098. Retrieval/RAG đã hoạt động end-to-end và có citation, nhưng Precision@5 còn ở mức baseline khoảng 0,5067. Module 6 chỉ ra hướng cải thiện retrieval theo aspect, nhưng cần đánh giá lớn hơn trước khi khẳng định hiệu quả tổng quát.
 
 \section{Diễn giải sâu kết quả sentiment}
-Linear SVM vượt Logistic Regression khoảng 0,0158 macro-F1 trên tập test. Chênh lệch này không quá lớn nhưng nhất quán với validation macro-F1. Điều này cho thấy Linear SVM phù hợp hơn với dữ liệu TF-IDF sparse trong đề tài. Majority baseline có macro-F1 rất thấp vì chỉ dự đoán lớp positive, làm F1 của negative và neutral bằng 0.
+Linear SVM vượt Logistic Regression khoảng 0,0158 \MacroFOne{} trên tập test. Chênh lệch này không quá lớn nhưng nhất quán với validation \MacroFOne{}. Điều này cho thấy Linear SVM phù hợp hơn với dữ liệu \TFIDF{} sparse trong đề tài. Majority baseline có \MacroFOne{} rất thấp vì chỉ dự đoán lớp positive, làm F1 của negative và neutral bằng 0.
 
 Lớp positive có F1 cao nhất, khoảng 0,9637. Lớp negative cũng cao, khoảng 0,9426. Điều này cho thấy từ khóa tích cực và tiêu cực trong review khá rõ. Lớp neutral có F1 khoảng 0,8230, thấp hơn rõ rệt. Đây là dấu hiệu quan trọng: nếu muốn cải thiện model, nên tập trung vào neutral/mixed, không chỉ tối ưu accuracy tổng thể.
 
@@ -80,12 +80,12 @@ Vì vậy, việc Hybrid đạt 1,000 trên benchmark nhỏ cần diễn giải 
 Có ba nhóm đe dọa tính hợp lệ. Thứ nhất là dữ liệu: nhãn sentiment lấy từ rating nên có thể nhiễu. Thứ hai là đánh giá: retrieval manual chỉ có 15 query, chưa đại diện hết mọi nhu cầu. Thứ ba là triển khai: kết quả giao diện thử nghiệm phụ thuộc artifact hiện có, nếu thay corpus hoặc embedding model thì cần build lại index và đánh giá lại. Báo cáo đã ghi rõ các điểm này để tránh phóng đại.
 
 \section{So sánh kết quả với kỳ vọng ban đầu}
-Trước khi chạy thực nghiệm, có thể kỳ vọng Logistic Regression và Linear SVM đều mạnh vì dữ liệu review ngắn và có nhiều từ khóa sentiment. Kết quả thực tế đúng với kỳ vọng này: cả hai mô hình đều vượt majority baseline rất xa. Linear SVM tốt hơn Logistic Regression, nhưng Logistic Regression vẫn đạt macro-F1 0,8940, chứng tỏ TF-IDF là biểu diễn phù hợp cho baseline.
+Trước khi chạy thực nghiệm, có thể kỳ vọng Logistic Regression và Linear SVM đều mạnh vì dữ liệu review ngắn và có nhiều từ khóa sentiment. Kết quả thực tế đúng với kỳ vọng này: cả hai mô hình đều vượt majority baseline rất xa. Linear SVM tốt hơn Logistic Regression, nhưng Logistic Regression vẫn đạt \MacroFOne{} 0,8940, chứng tỏ \TFIDF{} là biểu diễn phù hợp cho baseline.
 
 Kết quả retrieval lại khiêm tốn hơn. Điều này cũng hợp lý vì retrieval khó hơn classification trong đề tài này. Classification chỉ chọn một trong ba lớp đã định nghĩa. Retrieval phải trả về đúng review liên quan cho nhiều query mở. Một query có thể liên quan đến nhiều aspect, nhiều cách diễn đạt và nhiều mức sentiment. Vì vậy Precision@5 khoảng 0,5067 là kết quả baseline cần được cải thiện, không phải thất bại của hệ thống.
 
 \section{Vai trò của trực quan hóa trong phân tích kết quả}
-Các biểu đồ accuracy và macro-F1 giúp so sánh nhanh hiệu quả giữa các mô hình sentiment. Trong đó, macro-F1 có ý nghĩa quan trọng hơn accuracy vì phản ánh hiệu quả trên cả lớp neutral, vốn là lớp ít mẫu và khó phân biệt hơn. Confusion matrix bổ sung góc nhìn chi tiết hơn bằng cách cho thấy mẫu nào bị nhầm giữa negative, neutral và positive.
+Các biểu đồ accuracy và \MacroFOne{} giúp so sánh nhanh hiệu quả giữa các mô hình sentiment. Trong đó, \MacroFOne{} có ý nghĩa quan trọng hơn accuracy vì phản ánh hiệu quả trên cả lớp neutral, vốn là lớp ít mẫu và khó phân biệt hơn. Confusion matrix bổ sung góc nhìn chi tiết hơn bằng cách cho thấy mẫu nào bị nhầm giữa negative, neutral và positive.
 
 Đối với retrieval, biểu đồ Precision@k giúp diễn giải mức độ liên quan của các review được truy xuất ở các ngưỡng top-k khác nhau. Trực quan hóa không thay thế bảng số liệu, nhưng hỗ trợ nhận diện xu hướng: sentiment classification đạt kết quả ổn định hơn retrieval, trong khi retrieval vẫn còn dư địa cải thiện ở các query rộng hoặc nhiều aspect.
 
@@ -96,3 +96,4 @@ Với mỗi câu hỏi, hệ thống trả về danh sách review ở top-k. Pre
 
 \section{Diễn giải kết quả benchmark Module 6}
 Module 6 được xem như một hướng cải tiến retrieval. Dense retrieval nắm bắt tương đồng ngữ nghĩa nhưng có thể bỏ sót keyword complaint. BM25 bắt keyword tốt hơn nhưng không hiểu nghĩa rộng. Hybrid dùng cả hai và gộp bằng RRF. Benchmark nhỏ cho thấy hybrid bắt keyword/aspect tốt hơn trong các query thử nghiệm. Tuy nhiên, benchmark còn nhỏ và cần đánh giá lớn hơn trước khi kết luận tổng quát.
+

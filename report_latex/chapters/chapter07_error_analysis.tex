@@ -1,10 +1,10 @@
 \chapter{Phân tích lỗi}
 \section{Lỗi sentiment classification}
-Theo \code{results/module5/error_analysis.md}, lớp neutral/mixed là lớp khó nhất. Linear SVM đạt neutral F1 khoảng 0,8230, thấp hơn negative và positive. Nguyên nhân chính là neutral ít dữ liệu hơn và nội dung neutral thường không rõ cực cảm xúc. Một review 3 sao có thể vừa khen vừa chê, ví dụ “giao nhanh nhưng chất lượng bình thường”. Nếu ánh xạ 3 sao thành neutral, mô hình có thể khó học vì từ khóa tích cực và tiêu cực cùng xuất hiện.
+Theo phân tích lỗi của Module 5, lớp neutral/mixed là lớp khó nhất. Linear SVM đạt neutral F1 khoảng 0,8230, thấp hơn negative và positive. Nguyên nhân chính là neutral ít dữ liệu hơn và nội dung neutral thường không rõ cực cảm xúc. Một review 3 sao có thể vừa khen vừa chê, ví dụ “giao nhanh nhưng chất lượng bình thường”. Nếu ánh xạ 3 sao thành neutral, mô hình có thể khó học vì từ khóa tích cực và tiêu cực cùng xuất hiện.
 
 Một nguồn lỗi khác là rating không luôn khớp sentiment thật. Có người cho 5 sao để ủng hộ shop nhưng vẫn phàn nàn về giao hàng. Có người cho 1 sao vì sự cố cá nhân nhưng nội dung không nêu rõ vấn đề. Vì nhãn sentiment được suy ra từ rating, nhiễu nhãn là không tránh khỏi.
 
-Review ngắn cũng gây lỗi. Câu “tạm” hoặc “ok” có thể là positive nhẹ hoặc neutral tùy ngữ cảnh. Review có mỉa mai, phủ định kép, viết tắt, sai chính tả cũng khó cho TF-IDF + SVM. Ví dụ “không phải là không tốt” có cấu trúc phủ định phức tạp mà mô hình tuyến tính khó hiểu sâu.
+Review ngắn cũng gây lỗi. Câu “tạm” hoặc “ok” có thể là positive nhẹ hoặc neutral tùy ngữ cảnh. Review có mỉa mai, phủ định kép, viết tắt, sai chính tả cũng khó cho \TFIDF{} + SVM. Ví dụ “không phải là không tốt” có cấu trúc phủ định phức tạp mà mô hình tuyến tính khó hiểu sâu.
 
 \section{Lỗi retrieval}
 Retrieval có thể sai vì query chung chung. Query “khách hàng phàn nàn gì về sản phẩm” rất rộng, có thể truy xuất nhiều loại phàn nàn khác nhau. Nếu người dùng hỏi cụ thể hơn như “review nào nói shop giao thiếu phụ kiện”, evidence sẽ dễ chính xác hơn.
@@ -45,3 +45,4 @@ Module 6 rules & Rule-based aspect sentiment không xử lý tốt phủ định
 
 \section{Bài học từ phân tích lỗi}
 Phân tích lỗi cho thấy hệ thống không chỉ cần model tốt mà còn cần dữ liệu sạch, evaluation rõ ràng và giao diện không gây hiểu nhầm. Với sentiment, cần chú ý neutral và label noise. Với RAG, cần tách rõ score retrieval và relevance thật. Với giao diện thử nghiệm, cần tách sentiment input khỏi query RAG. Những bài học này đã được phản ánh trong phiên bản giao diện cuối cùng.
+

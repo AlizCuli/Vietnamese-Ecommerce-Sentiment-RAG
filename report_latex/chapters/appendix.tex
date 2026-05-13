@@ -26,25 +26,29 @@
 \endgroup
 
 \section{Artifact quan trọng}
+
+
 \begingroup
 \small
-\begin{longtable}{L{0.24\textwidth}L{0.22\textwidth}L{0.16\textwidth}L{0.28\textwidth}}
+\begin{longtable}{L{0.20\textwidth}L{0.32\textwidth}L{0.38\textwidth}}
 \caption{Artifact chính và vai trò trong hệ thống}\label{tab:appendix-artifacts}\\
 \toprule
-Thư mục & Tên file & Nhóm & Vai trò \\
+Nhóm & Artifact & Vai trò \\
 \midrule
-\filepath{models/module2} & \code{best_model.joblib} & Sentiment & Model sentiment chính dùng khi inference. \\
-\filepath{models/module2} & \code{tfidf_linearsvm.joblib} & Sentiment & Pipeline TF-IDF + Linear SVM, model tốt nhất trong baseline. \\
-\filepath{models/module2} & \code{tfidf_logreg.joblib} & Sentiment & Pipeline TF-IDF + Logistic Regression để so sánh. \\
-\filepath{models/module2} & \code{label_mapping.json} & Sentiment & Mapping nhãn negative/neutral/positive. \\
-\filepath{models/module4} & \code{review_faiss.index} & Retrieval & Vector index FAISS cho 82.677 documents final. \\
-\filepath{models/module4} & \code{review_metadata.parquet} & Retrieval & Metadata đồng bộ với từng vector trong FAISS. \\
-\filepath{models/module4} & \code{module4_index_config.json} & Retrieval & Cấu hình embedding model, dim, index type, số documents và đường dẫn artifact. \\
-\filepath{results/module2} & \code{metrics_summary.csv} & Evaluation & Metric train/valid/test của các mô hình sentiment. \\
-\filepath{results/module5} & \code{manual_precision_overall.csv} & Evaluation & Manual Precision@3/5/10 của retrieval baseline. \\
-\filepath{results/module6} & \code{last_benchmark_console_reference.txt} & Evaluation & Kết quả benchmark nhỏ của Module 6. \\
+Sentiment & \code{best_model.joblib} & Model sentiment chính dùng khi inference. \\
+Sentiment & \code{tfidf_linearsvm} & Pipeline \TFIDF{} + Linear SVM, model tốt nhất trong baseline. \\
+Sentiment & \code{tfidf_logreg} & Pipeline \TFIDF{} + Logistic Regression để so sánh. \\
+Sentiment & \code{label_mapping.json} & Mapping nhãn negative/neutral/positive. \\
+Retrieval & \code{review_faiss.index} & Vector index FAISS cho 82.677 documents final. \\
+Retrieval & \code{review_metadata.parquet} & Metadata đồng bộ với từng vector trong FAISS. \\
+Retrieval & \code{module4_index_config} & Cấu hình embedding model, dim, index type và số documents. \\
+Evaluation & \code{metrics_summary.csv} & Metric train/valid/test của các mô hình sentiment. \\
+Evaluation & \code{manual_precision_overall} & Manual Precision@3/5/10 của retrieval baseline. \\
+Evaluation & \code{benchmark_console} & Kết quả benchmark nhỏ của Module 6. \\
 \bottomrule
 \end{longtable}
+\vspace{-0.4em}
+{\footnotesize Ghi chú: đường dẫn đầy đủ nằm trong các thư mục \filepath{models/module2/}, \filepath{models/module4/}, \filepath{results/module2/}, \filepath{results/module5/} và \filepath{results/module6/}.}
 \endgroup
 
 \chapter{Hướng dẫn tái lập thực nghiệm}
@@ -194,8 +198,8 @@ return final.head(top_k)
 Mô hình & Accuracy & Macro-F1 & Weighted-F1 \\
 \midrule
 Majority baseline & 0,4297 & 0,2004 & 0,2583 \\
-TF-IDF + Logistic Regression & 0,9174 & 0,8940 & 0,9176 \\
-TF-IDF + Linear SVM & 0,9329 & 0,9098 & 0,9315 \\
+\TFIDF{} + Logistic Regression & 0,9174 & 0,8940 & 0,9176 \\
+\TFIDF{} + Linear SVM & 0,9329 & 0,9098 & 0,9315 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -230,11 +234,10 @@ Embedding model & \filepath{intfloat/multilingual-e5-small} \\
 Embedding dim & 384 \\
 Index type & FAISS \code{IndexFlatIP} \\
 Similarity & Cosine via normalized inner product \\
-Metadata & \code{review_metadata.parquet} \\
-Index & \code{review_faiss.index} \\
+Metadata & \filepath{models/module4/review_metadata.parquet} \\
+Index & \filepath{models/module4/review_faiss.index} \\
 \bottomrule
 \end{tabularx}
-\par\vspace{0.25em}
 {\footnotesize Nguồn: \filepath{models/module4/module4_index_config.json}.}
 \end{table}
 
@@ -242,4 +245,5 @@ Index & \code{review_faiss.index} \\
 
 Hệ thống xử lý review người dùng nên cần diễn giải kết quả thận trọng. Sentiment label trong đề tài được ánh xạ từ rating nên có thể nhiễu; không nên xem dự đoán sentiment là đánh giá tuyệt đối về khách hàng hoặc nhà bán. RAG answer chỉ phản ánh các review được truy xuất ở top-k, không đại diện cho toàn bộ thị trường nếu không có phân tích thống kê bổ sung.
 
-Nếu triển khai ở môi trường thực tế, cần bổ sung cơ chế ẩn thông tin cá nhân, kiểm soát dữ liệu nhạy cảm, logging có giới hạn, versioning model/index và đánh giá human-in-the-loop. Các câu trả lời có citation giúp tăng tính minh bạch, nhưng vẫn cần người dùng kiểm tra evidence trước khi đưa ra quyết định vận hành.
+Nếu triển khai ở môi trường thực tế, cần bổ sung cơ chế ẩn thông tin cá nhân, kiểm soát dữ liệu nhạy cảm, logging có giới hạn, versioning model/index và đánh giá \HumanInLoop{}. Các câu trả lời có citation giúp tăng tính minh bạch, nhưng vẫn cần người dùng kiểm tra evidence trước khi đưa ra quyết định vận hành.
+

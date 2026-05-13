@@ -4,7 +4,7 @@ Hạn chế đầu tiên là nhãn sentiment được ánh xạ từ rating. Cá
 
 Hạn chế thứ hai là dataset sentiment chưa quá lớn. Với 5.162 review sau dedup, baseline có thể học tốt các từ khóa phổ biến nhưng chưa chắc tổng quát cho mọi ngành hàng. Lớp neutral ít hơn nên metric thấp hơn.
 
-Hạn chế thứ ba là TF-IDF + SVM chưa hiểu ngữ cảnh sâu như PhoBERT/BERT. Mô hình có thể yếu với mỉa mai, phủ định phức tạp, câu dài nhiều ý và lỗi chính tả.
+Hạn chế thứ ba là \TFIDF{} + SVM chưa hiểu ngữ cảnh sâu như PhoBERT/BERT. Mô hình có thể yếu với mỉa mai, phủ định phức tạp, câu dài nhiều ý và lỗi chính tả.
 
 Hạn chế thứ tư là retrieval precision còn ở mức baseline. Manual Precision@5 khoảng 0,5067 cho thấy hệ thống đã truy xuất được evidence liên quan ở mức nhất định nhưng còn nhiều chỗ cải thiện. Top-k có thể lấy review cùng chủ đề nhưng sai intent hoặc sai polarity.
 
@@ -27,3 +27,4 @@ Hướng thứ sáu là cải thiện lọc spam/duplicate/noise. Có thể thê
 
 \section{Định hướng production}
 Nếu triển khai production, cần caching embedding/model, logging query, monitoring latency, kiểm soát version artifact, API authentication và cơ chế cập nhật index định kỳ. Hệ thống hiện tại mới là bản thử nghiệm học thuật end-to-end, chưa phải hệ thống production hoàn chỉnh.
+
