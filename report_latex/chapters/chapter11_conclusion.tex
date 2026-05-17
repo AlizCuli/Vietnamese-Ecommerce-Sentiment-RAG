@@ -1,9 +1,0 @@
-\chapter{Kết luận}
-Đề tài đã xây dựng được pipeline NLP/RAG end-to-end cho bài toán phân tích review TMĐT tiếng Việt. Phần sentiment classification xử lý dữ liệu, ánh xạ rating sang sentiment, chia train/valid/test và huấn luyện các baseline. Trong các mô hình đã thử, \TFIDF{} + Linear SVM đạt kết quả tốt nhất với test accuracy khoảng 0,9329 và test \MacroFOne{} khoảng 0,9098.
-
-Phần RAG xây dựng corpus/index final gồm 82.677 documents, dùng embedding model \code{intfloat/multilingual-e5-small}, FAISS \code{IndexFlatIP} và vector dim 384. Hệ thống truy xuất review liên quan theo query, áp dụng filter/rerank nhẹ và tạo câu trả lời template-based có citation. Manual Precision@5 baseline khoảng 0,5067 cho thấy retrieval đã hoạt động nhưng còn không gian cải thiện.
-
-Đề tài cũng bổ sung Module 6 như hướng nâng cấp retrieval bằng BM25 + Dense FAISS + RRF/rerank + aspect rules. Benchmark nhỏ cho thấy hybrid retrieval cải thiện keyword/aspect hit-rate, nhưng cần đánh giá lớn hơn trước khi kết luận tổng quát. Giao diện thử nghiệm 3 tab giúp minh họa rõ sentiment, RAG và thông tin kỹ thuật.
-
-Giá trị thực tiễn của đề tài là hỗ trợ tổng hợp phản hồi khách hàng TMĐT có bằng chứng. Thay vì chỉ đưa ra nhãn cảm xúc, hệ thống cho phép người dùng hỏi về vấn đề cụ thể và xem review thật làm nguồn. Báo cáo cũng chỉ ra hạn chế trung thực: nhãn sentiment có thể nhiễu, retrieval precision còn baseline, RAG chưa dùng LLM thật và Module 6 còn là MVP. Đây là nền tảng phù hợp để phát triển tiếp theo hướng transformer sentiment, supervised reranker, ABSA và LLM có kiểm soát.
-
